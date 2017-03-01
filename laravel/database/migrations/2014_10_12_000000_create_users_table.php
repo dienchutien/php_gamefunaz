@@ -17,10 +17,11 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('email')->unique();
+            $table->unsignedTinyInteger('status')->default(1)->comment = "Trạng thái 0 và 1";
             $table->string('password');
-            $table->rememberToken();
+            $table->rememberToken()->comment = "Token ghi nhớ mỗi lần đăng nhập";
             $table->timestamps();
-        });
+        });        
     }
 
     /**
