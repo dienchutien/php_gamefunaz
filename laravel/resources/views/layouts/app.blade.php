@@ -40,7 +40,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a href="/" class="navbar-brand"><img class="logo" src="/images/logo-dxmb.png" alt="<?php echo  config('cmconst.text.title') ?>"></a>
+                <a href="/" class="navbar-brand"><img class="logo" src="/images/logo-dxmb.png" alt=""></a>
                 <!-- Branding Image -->
                 
             </div>
@@ -55,17 +55,6 @@
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Authentication Links -->
                     @if (!Auth::guest())
-                        <?php if(Auth::user()->hr_type == 1) { 
-                            $o_LeaveRequest = new \App\Models\LeaveRequest();
-                            $i_Count = $o_LeaveRequest->i_fCountLeaveRequestPending(); 
-                        ?>
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                <span class="header_color">Đơn chờ duyệt: <span class="hotline-support"><b><?php echo $i_Count?></b></span></span>
-                            </a>
-                        </li>
-                        <?php } ?>
-                        
                         
                         <li class="dropdown">
                             <a class="dropdown-toggle" role="button" href="javascript: GLOBAL_JS.v_fToggleLeftSide();">
@@ -104,14 +93,19 @@
                             <a href="#"><i class="fa fa-dashboard fa-fw"></i>Bảng điều khiển</a>
                         </li>
                         <li class="">
-                            <a href="#"><i class="fa fa-user"></i>Quản lý Users<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-user"></i>Quản lý Dự Án<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level collapse" aria-expanded="false">
-                                <li class=""><a class="" href="<?php echo Request::root()."/user"?>">Danh sách Users</a></li>
-                                <li><a class="" href="<?php echo Request::root()."/user/insert"?>">Thêm users mới</a></li>
-                                <li><a class="" href="<?php echo Request::root()."/list-change-manager"?>">Danh sách thay đổi trưởng nhóm</a></li>
-                            </ul>
+                                <li class=""><a class="" href="<?php echo Request::root()."/user"?>">Danh Sách Dự Án</a></li>
+                                <li><a class="" href="<?php echo Request::root()."/user/insert"?>">Thêm Mới Dự Án</a></li>
+                            </ul>                            
                         </li>
-                        
+                        <li class="">
+                            <a href="#"><i class="fa fa-user"></i>Quản lý Kênh<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level collapse" aria-expanded="false">
+                                <li class=""><a class="" href="<?php echo Request::root()."/user"?>">Kênh theo dự án</a></li>
+                                <li><a class="" href="<?php echo Request::root()."/user/insert"?>">Thêm Mới Dự Án</a></li>
+                            </ul>                            
+                        </li>
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
