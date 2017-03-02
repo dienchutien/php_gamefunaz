@@ -17,10 +17,16 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index');
+Route::post('ajax','AjaxController@SetProcess');
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/home', 'HomeController@index');
 
+    // Route Project
+    Route::get('list_projects', 'ProjectsController@getAllProject');
+    
+    Route::get('projects/addedit', 'Projects\ProjectsController@ListProjects');
+    Route::post('projects/addedit','Projects\ProjectsController@ListProjects');
+// End Router Project
     
 });

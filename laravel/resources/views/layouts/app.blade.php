@@ -95,8 +95,8 @@
                         <li class="">
                             <a href="#"><i class="fa fa-user"></i>Quản lý Dự Án<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level collapse" aria-expanded="false">
-                                <li class=""><a class="" href="<?php echo Request::root()."/user"?>">Danh Sách Dự Án</a></li>
-                                <li><a class="" href="<?php echo Request::root()."/user/insert"?>">Thêm Mới Dự Án</a></li>
+                                <li class=""><a class="" href="<?php echo Request::root()."/list_projects"?>">Danh Sách Dự Án</a></li>
+                                <li><a class="" href="<?php echo Request::root()."/projects/addedit"?>">Thêm Mới Dự Án</a></li>
                             </ul>                            
                         </li>
                         <li class="">
