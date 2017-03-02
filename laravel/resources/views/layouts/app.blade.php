@@ -132,10 +132,5 @@
     <script src="<?php echo URL::to('/');?>/js/sb-admin-2.js"></script>
     <script src="<?php echo URL::to('/');?>/js/global.js"></script>
     
-    <!--Datepicker-->
-    <script src="<?php echo URL::to('/');?>/plugins/datepicker/jquery-ui.min.js"></script>
-    <script src="<?php echo URL::to('/');?>/plugins/datepicker/jquery-ui-timepicker-addon.js"></script>
-    <link rel="stylesheet" type="text/css" href="<?php echo URL::to('/');?>/plugins/datepicker/jquery-ui.min.css">
-    <link rel="stylesheet" type="text/css" href="<?php echo URL::to('/');?>/plugins/datepicker/jquery-ui.theme.css">
 </body>
 </html>

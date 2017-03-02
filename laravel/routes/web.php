@@ -20,7 +20,7 @@ Auth::routes();
 Route::post('ajax','AjaxController@SetProcess');
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::get('/home', 'HomeController@index');
+    Route::get('home', 'HomeController@index');
 
     // Route Project
     Route::get('list_projects', 'ProjectsController@getAllProject');
