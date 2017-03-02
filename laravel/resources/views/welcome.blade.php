@@ -69,10 +69,10 @@
             @if (Route::has('login'))
                 <div class="top-right links">
                     @if (Auth::check())
-                        <a href="{{ url('/home') }}">Home</a>
+                    <a href="{{ url('/home') }}" style="color:blue;">Home</a>
                     @else
-                        <a href="{{ url('/login') }}">Login</a>
-                        <a href="{{ url('/register') }}">Register</a>
+                        <a style="color:blue;" href="{{ url('/login') }}">Login</a>
+                        <a style="color:blue;" href="{{ url('/register') }}">Register</a>
                     @endif
                 </div>
             @endif
@@ -83,7 +83,7 @@
                 </div>
 
                 <div class="links">
-                    <a href="https://laravel.com/docs">copyright by Top</a>                    
+                    <a href="#">copyright by Top</a>
                 </div>
             </div>
         </div>

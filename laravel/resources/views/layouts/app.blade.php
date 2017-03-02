@@ -111,7 +111,6 @@
                                 <li><a class="" href="<?php echo Request::root()."/list-change-manager"?>">Danh sách thay đổi trưởng nhóm</a></li>
                             </ul>
                         </li>
-
                         
                     </ul>
                 </div>
