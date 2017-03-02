@@ -2,7 +2,9 @@
 @section('content')
 
 <h3 class="col-xs-12 no-padding">Danh sách dự án</h3>
-<input type="hidden" name="_token" value="{!! csrf_token() !!}">
+<form method="get" action="" id="frmFilter" name="frmFilter"  class="form-inline">
+    <input type="hidden" name="_token" value="{!! csrf_token() !!}">
+</form>
     <div class="">
         <table class="table table-responsive table-hover table-striped table-bordered">
             <tr>
@@ -24,7 +26,7 @@
                     <?php
                         if($a_val->status == 1 || $a_val->status == 0){
                     ?>
-                    <a title="Edit" href="<?php echo Request::root().'/department/addedit?id='.$a_val->id;?>" title="Edit" class="not-underline">
+                    <a title="Edit" href="<?php echo Request::root().'/projects/addedit?id='.$a_val->id;?>" title="Edit" class="not-underline">
                         <i class="fa fa-edit fw"></i>
                     </a>
                     <a id="trash_switch_" href="javascript:GLOBAL_JS.v_fDelRow({{ $a_val->id }},1)" title="Cho vào thùng rác" class="not-underline">

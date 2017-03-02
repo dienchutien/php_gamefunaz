@@ -25,8 +25,8 @@ Route::group(['middleware' => 'auth'], function () {
     // Route Project
     Route::get('list_projects', 'ProjectsController@getAllProject');
     
-    Route::get('projects/addedit', 'Projects\ProjectsController@ListProjects');
-    Route::post('projects/addedit','Projects\ProjectsController@ListProjects');
+    Route::get('projects/addedit', 'ProjectsController@ListProjects');
+    Route::post('projects/addedit','ProjectsController@ListProjects');
 // End Router Project
     
 });

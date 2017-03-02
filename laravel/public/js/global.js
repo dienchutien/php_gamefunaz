@@ -105,6 +105,24 @@ var GLOBAL_JS = {
                         });
 		}
 	},
+        /**
+     * Auth: Dienct
+     * Des: 
+     * Since: 02/003/2017
+     * */
+    v_fSubmitProjectValidate : function()
+    {
+        var sz_name = $('#name').val();
+        if(GLOBAL_JS.b_fValidateEmpty(sz_name)){
+           $('.required_name').remove();
+           $('.alert-danger').append('<p><strong class="required_name">Bạn cần nhập tên phòng</strong></p>');
+           $('.alert-danger').removeClass('hide');
+           $('#name').focus();
+           return false;
+        }
+        if($('.alert-danger').text() != '') return false;
+        $('.submit').click();
+    }
         
 };
 
