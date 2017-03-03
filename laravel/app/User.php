@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use DB;
 
 class User extends Authenticatable
 {
@@ -26,4 +27,14 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+    
+    public function GetUserById($id){
+        $a_Data = array();
+        $a_Data = DB::table('users')->where('id', $id)->first();
+        if (count($a_Data) > 0){
+            $a_Data->created_at = Util::sz_DateTimeFormat($a_Data->created_at);
+            $a_Data->updated_at = Util::sz_DateTimeFormat($a_Data->updated_at);
+        }
+        return $a_Data;
+    }
 }

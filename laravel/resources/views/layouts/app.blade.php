@@ -102,8 +102,8 @@
                         <li class="">
                             <a href="#"><i class="fa fa-user"></i>Quản lý Kênh<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level collapse" aria-expanded="false">
-                                <li class=""><a class="" href="<?php echo Request::root()."/user"?>">Kênh theo dự án</a></li>
-                                <li><a class="" href="<?php echo Request::root()."/user/insert"?>">Thêm Mới Dự Án</a></li>
+                                <li class=""><a class="" href="<?php echo Request::root()."/list_channel"?>">Kênh theo dự án</a></li>
+                                <li><a class="" href="<?php echo Request::root()."/channel/addedit"?>">Thêm Mới Dự Án</a></li>
                             </ul>                            
                         </li>
                     </ul>
