@@ -40,12 +40,12 @@ class Job extends Model
     public function getJobById($id) {
 
         $a_Data = array();
-        $a_Data = DB::table('projects')->where('id', $id)->first();
-        if (count($a_Data) > 0)
+        $a_Data = DB::table('jobs')->where('id', $id)->first();
+        if (count($a_Data) > 0){
             $a_Data->created_at = Util::sz_DateTimeFormat($a_Data->created_at);
-        if (count($a_Data) > 0)
+            $a_Data->date_finish = Util::sz_DateTimeFormat($a_Data->date_finish);
             $a_Data->updated_at = Util::sz_DateTimeFormat($a_Data->updated_at);
-
+        }
         return $a_Data;
     }
 }

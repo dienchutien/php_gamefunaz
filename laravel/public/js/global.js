@@ -127,6 +127,7 @@ var GLOBAL_JS = {
 };
 
 $(function() {
+    $( ".datepicker" ).datepicker();
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

@@ -17,6 +17,7 @@
 
     {{-- <link href="{{ elixir('css/app.css') }}" rel="stylesheet"> --}}
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
     <style>
         body {
@@ -139,6 +140,7 @@
     <script src="<?php echo URL::to('/');?>/js/metisMenu.min.js"></script>
     <script src="<?php echo URL::to('/');?>/js/sb-admin-2.js"></script>
     <script src="<?php echo URL::to('/');?>/js/global.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     
 </body>
 </html>

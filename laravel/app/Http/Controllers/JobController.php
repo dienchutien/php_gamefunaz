@@ -35,7 +35,7 @@ class JobController extends Controller
 
         $a_DataView = $this->o_Job->getJobById($job_id);
 
-        return view('projects.edit_projects', ['a_Project' => $a_DataView, 'i_id' => $job_id]);
+        return view('jobs.edit_jobs', ['a_Jobs' => $a_DataView, 'i_id' => $job_id]);
 
         ///get data department one record///
     }
