@@ -23,10 +23,13 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('home', 'HomeController@index');
 
     // Route Project
-    Route::get('list_projects', 'ProjectsController@getAllProject');
-    
+    Route::get('list_projects', 'ProjectsController@getAllProject');    
     Route::get('projects/addedit', 'ProjectsController@ListProjects');
     Route::post('projects/addedit','ProjectsController@ListProjects');
-// End Router Project
+        
+    // Route Channel
+    Route::get('list_channel', 'ChannelController@getAllChannel');
+    Route::get('channel/addedit', 'ChannelController@addEditChannel');
+    Route::post('channel/addedit','ChannelController@addEditChannel');
     
 });
