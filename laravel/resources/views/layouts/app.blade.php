@@ -106,6 +106,14 @@
                                 <li><a class="" href="<?php echo Request::root()."/channel/addedit"?>">Thêm Mới Dự Án</a></li>
                             </ul>                            
                         </li>
+                        <li class="">
+                            <a href="#"><i class="fa fa-user"></i>Quản lý Tác Vụ<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level collapse" aria-expanded="false">
+                                <li class=""><a class="" href="<?php echo Request::root()."/list_job"?>">Danh sách tác vụ</a></li>
+                                <li><a class="" href="<?php echo Request::root()."/job/addedit"?>">Thêm tác vụ</a></li>
+                                <li><a class="" href="<?php echo Request::root()."/job/statistic"?>">Thống kê tác vụ</a></li>
+                            </ul>                            
+                        </li>
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
