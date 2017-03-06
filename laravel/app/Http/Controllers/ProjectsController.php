@@ -44,7 +44,7 @@ class ProjectsController extends Controller {
                 return redirect('list_projects')->with('status', 'Cập nhật thành công!');
         }
 
-        $a_DataView = $this->o_Project->getProjectById($projec_id);        
+        $a_DataView = $this->o_Project->getProjectById($projec_id);
 
         return view('projects.edit_projects', ['a_Project' => $a_DataView, 'i_id' => $projec_id]);
 

@@ -30,7 +30,11 @@
             <div class="col-xs-12 col-sm-6 no-padding">
                 <select class="form-control input-sm " id="projects" name="projects">
                     <option value="">Chọn Dự Án</option>
-                    <option value="2">làm thêm tính tăng ca</option>                        
+                    @if(count($a_DataProjects) > 0)
+                        @foreach($a_DataProjects as $a_DataProject )
+                        <option value="{{$a_DataProject->id}}">{{$a_DataProject->name}}</option>
+                        @endforeach
+                    @endif
                 </select>
             </div>
         </div>
@@ -42,8 +46,11 @@
             <div class="col-xs-12 col-sm-6 no-padding">
                 <select class="form-control input-sm " id="channel" name="channel">
                     <option value="">Chọn Kênh</option>
-                    <option value="1">làm thêm cộng phép nghỉ bù</option>
-                    <option value="2">làm thêm tính tăng ca</option>
+                    @if(count($a_DataChannels) > 0)
+                        @foreach($a_DataChannels as $a_DataChannel )
+                        <option value="{{$a_DataChannel->id}}">{{$a_DataChannel->name}}</option>
+                        @endforeach
+                    @endif
                 </select>
             </div>
         </div>

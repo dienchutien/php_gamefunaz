@@ -16,7 +16,7 @@ class Projects extends Model
      */
     public function getAll() {
         $a_data = array();
-        $a_data = DB::table('projects')->select('id', 'name', 'status', 'created_at', 'updated_at')->orderBy('id', 'asc')->get();
+        $a_data = DB::table('projects')->select('id', 'name', 'status', 'created_at', 'updated_at')->where('status', 1)->orderBy('id', 'asc')->get();
         if(count($a_data) > 0){
             foreach ($a_data as $key => &$val) {
                 $val->stt = $key + 1;
