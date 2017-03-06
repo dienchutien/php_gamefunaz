@@ -105,7 +105,7 @@ var GLOBAL_JS = {
                         });
 		}
 	},
-        /**
+     /**
      * Auth: Dienct
      * Des: 
      * Since: 02/003/2017
@@ -120,6 +120,37 @@ var GLOBAL_JS = {
            $('#name').focus();
            return false;
         }
+        if($('.alert-danger').text() != '') return false;
+        $('.submit').click();
+    },
+    
+    /**
+     * Auth: Dienct
+     * Des: Check validate then submit form if 0 error
+     * Since: 06/003/2017
+     * */
+    v_fSubmitJobValidate : function()
+    {
+        var sz_projects = $('#projects').val();
+        var sz_channel = $('#channel').val();
+        var sz_job_type = $('#job_type').val();
+        $('.alert-danger').empty();
+        
+        if(sz_projects == ''){
+           $('.alert-danger').append('<p><strong class="required_name">Bạn cần chọn dự án</strong></p>');
+           $('.alert-danger').removeClass('hide');           
+        }
+        
+        if(sz_channel == ''){
+           $('.alert-danger').append('<p><strong class="required_name">Bạn cần chọn kênh</strong></p>');
+           $('.alert-danger').removeClass('hide');           
+        }
+        
+        if(sz_job_type == ''){
+           $('.alert-danger').append('<p><strong class="required_name">Bạn cần chọn loại tác vụ</strong></p></br>');
+           $('.alert-danger').removeClass('hide');
+        }
+        
         if($('.alert-danger').text() != '') return false;
         $('.submit').click();
     }

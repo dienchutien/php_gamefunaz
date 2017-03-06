@@ -19,7 +19,7 @@
         <div class="col-xs-12 col-sm-6 no-padding">
             <label for="description" class="col-xs-12 col-sm-3 control-label text-left">Ghi chú</label>
             <div class="col-xs-12 col-sm-6 no-padding">
-                <textarea class="form-control" rows="5" id="description" name="description" placeholder="Nhập ghi chú"></textarea>
+                <textarea class="form-control" rows="5" id="description" name="description" placeholder="Nhập ghi chú" required></textarea>
             </div>
         </div>
     </div>
@@ -60,9 +60,9 @@
             <label for="job_type" class="col-xs-12 col-sm-3 control-label text-left">Chọn Loại tác vụ</label>
             <div class="col-xs-12 col-sm-6 no-padding">
                 <select class="form-control input-sm " id="job_type" name="job_type">
-                    <option>Chọn Loại tác vụ</option>
+                    <option value="">Chọn Loại tác vụ</option>
                     <option value="0">Tác vụ trả trước</option>
-                    <option value="2">Tác vụ trả sau</option>
+                    <option value="1">Tác vụ trả sau</option>
                 </select>
             </div>
         </div>
@@ -72,7 +72,7 @@
         <div class="col-xs-12 col-sm-3 no-padding">
             <label for="date_finish" class="col-xs-6 control-label text-left">Ngày hoàn thành</label>
             <div class="col-xs-12 col-sm-6 no-padding">
-                <input type="text" class="form-control datepicker" id="date_finish" name="date_finish" placeholder="Chọn ngày hoàn thành tác vụ">
+                <input type="text" class="form-control datepicker" id="date_finish" name="date_finish" placeholder="Chọn ngày hoàn thành tác vụ" required>
             </div>
         </div>
     </div>
@@ -89,7 +89,7 @@
     <div class="form-group">
         <div class="col-xs-6 col-sm-3 no-padding">
             <button type="reset" class="btn btn-default">Nhập lại</button>
-            <input type="button" name="submit" VALUE="Cập nhật" class="btn btn-primary btn-sm " onclick="GLOBAL_JS.v_fSubmitProjectValidate()"/>
+            <input type="button" name="submit" VALUE="Cập nhật" class="btn btn-primary btn-sm " onclick="GLOBAL_JS.v_fSubmitJobValidate()"/>
             <input type="submit" name="submit" class="btn btn-primary btn-sm hide submit">
         </div>
     </div>
