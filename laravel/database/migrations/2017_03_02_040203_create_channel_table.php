@@ -18,7 +18,7 @@ class CreateChannelTable extends Migration
             $table->string('name', 200)->unique()->comment = "Tên Kenh";
             $table->string('description');
             $table->unsignedTinyInteger('status')->default(1)->comment = "Trạng thái 0 và 1";            
-            $table->unsignedInteger('amdin_modify');
+            $table->unsignedInteger('admin_modify');
             $table->timestamps();
         });
     }
