@@ -7,6 +7,7 @@ use App\models\Job as o_JobModel;
 use Illuminate\Support\Facades\Input;
 use App\models\Projects;
 use App\models\Channel;
+use App\User;
 
 class JobController extends Controller
 {
@@ -18,16 +19,18 @@ class JobController extends Controller
     private $o_Job;
     private $o_Project;
     private $o_Channel;
+    private $o_User;
 
     public function __construct() {
         $this->o_Job = new o_JobModel();
         $this->o_Project = new Projects();
         $this->o_Channel = new Channel();
+        $this->o_user = new User();
     }
     /**
      * @Auth: Dienct
      * @Des: Update Project
-     * @Since: 9/1/2015
+     * @Since: 1/3/2017
      */
     public function addEditJob() {
         $a_DataView = array();
@@ -50,7 +53,24 @@ class JobController extends Controller
         $a_DataView = $this->o_Job->getJobById($job_id);
 
         return view('jobs.edit_jobs', ['a_Jobs' => $a_DataView, 'i_id' => $job_id, 'a_DataProjects'=>$a_DataProjects, 'a_DataChannels'=>$a_DataChannels]);
+        
+    }
+    
+    /**
+     * @Auth: Dienct
+     * @Des: list Job.
+     * @Since: 6/3/2017
+     */
+    public function getAllJob() {
+        $a_Data = $this->o_Job->getAllSearch();
+        $Data_view['a_Jobs'] = $a_Data['a_data'];
+        $Data_view['a_search'] = $a_Data['a_search'];
+        
+        $Data_view['a_users'] = $this->o_user->getAll();
+        $Data_view['a_projects'] = $this->o_Project->getAll();
+        $Data_view['a_channels'] = $this->o_Channel->getAll();
 
-        ///get data department one record///
+        return view('jobs.index',$Data_view);
+        
     }
 }

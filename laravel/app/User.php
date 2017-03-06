@@ -37,4 +37,17 @@ class User extends Authenticatable
         }
         return $a_Data;
     }
+    
+    /**
+
+     * @auth: Dienct
+     * @since: 06/03/2017
+     * @des: get all user     
+     *
+     */
+    public function getAll(){
+        $a_Data = array();
+        $a_Data = DB::table('users')->get();
+        return $a_Data;
+    }
 }

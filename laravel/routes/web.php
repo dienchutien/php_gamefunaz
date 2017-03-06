@@ -33,7 +33,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('channel/addedit','ChannelController@addEditChannel');
     
     //Jobs
-    Route::get('list_job', 'JobController@getAllChannel');
+    Route::get('list_job', 'JobController@getAllJob');
     Route::get('job/addedit', 'JobController@addEditJob');
     Route::post('job/addedit','JobController@addEditJob');
 });

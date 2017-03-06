@@ -153,8 +153,16 @@ var GLOBAL_JS = {
         
         if($('.alert-danger').text() != '') return false;
         $('.submit').click();
-    }
-        
+    },
+    /**
+     * Auth: Dienct
+     * Des: Submit search All module
+     * Since: 06/03/2017
+     * */
+    v_fSearchSubmitAll : function() {
+        $('.submit').click();
+    },
+
 };
 
 $(function() {
