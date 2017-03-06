@@ -23,13 +23,13 @@ class Channel extends Model
      */
     public function getAll() {
         $a_data = array();
-        $a_data = DB::table('channel')->select('id', 'name', 'status', 'created_at', 'updated_at', 'amdin_modify')->where('status', 1)->orderBy('id', 'asc')->get();
+        $a_data = DB::table('channel')->select('id', 'name', 'status', 'created_at', 'updated_at', 'admin_modify')->where('status', 1)->orderBy('id', 'asc')->get();
         if(count($a_data) > 0){
             foreach ($a_data as $key => &$val) {
                 $val->stt = $key + 1;
                 $val->created_at = Util::sz_DateTimeFormat($val->created_at);
                 $val->updated_at = Util::sz_DateTimeFormat($val->updated_at);
-                $val->admin = $this->o_User->GetUserById($val->amdin_modify)->email ;
+                $val->admin = $this->o_User->GetUserById($val->admin_modify)->email ;
             }
         }
 
@@ -64,7 +64,7 @@ class Channel extends Model
         $a_DataUpdate['name'] = Input::get('name');
         $a_DataUpdate['status'] = Input::get('status') == 'on' ? 1 : 0;
         $a_DataUpdate['description'] = '';
-        $a_DataUpdate['amdin_modify'] = Auth::user()->id;
+        $a_DataUpdate['admin_modify'] = Auth::user()->id;
         if (is_numeric($id) == true && $id != 0) {
             $a_DataUpdate['updated_at'] = date('Y-m-d H:i:s', time());
             DB::table('channel')->where('id', $id)->update($a_DataUpdate);

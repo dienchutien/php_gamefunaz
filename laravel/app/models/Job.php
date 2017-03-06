@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Util;
 use DB;
 use Illuminate\Support\Facades\Input;
+use Auth;
 
 class Job extends Model
 {
@@ -26,17 +27,15 @@ class Job extends Model
         $a_DataUpdate['channel_id'] = Input::get('channel');       
         $time_finish = Input::get('date_finish');
         $a_DataUpdate['date_finish'] = date('Y-m-d',strtotime($time_finish));
-        
         $a_DataUpdate['job_type'] = Input::get('job_type');// 0 la tra truoc, 1 la tra sau
-
-        if (is_numeric($id) == true && $id != 0) {
-            $a_DataUpdate['updated_at'] = date('Y-m-d H:i:s', time());
-            $a_DataUpdate['is_payment']  = Input::get('job_type') == 0 ? 0 : 1;
+        $a_DataUpdate['is_payment']  = Input::get('job_type') == 0 ? 0 : 1;
+        $a_DataUpdate['admin_modify'] = Auth::user()->id;
+        $a_DataUpdate['updated_at'] = date('Y-m-d H:i:s', time());
+        
+        if (is_numeric($id) == true && $id != 0) {            
             DB::table('jobs')->where('id', $id)->update($a_DataUpdate);
         } else {
             $a_DataUpdate['created_at'] = date('Y-m-d H:i:s', time());
-            $a_DataUpdate['updated_at'] = date('Y-m-d H:i:s', time());
-            $a_DataUpdate['is_payment']  = Input::get('job_type') == 0 ? 0 : 1;
             DB::table('jobs')->insert($a_DataUpdate);
         }
     }
