@@ -15,7 +15,7 @@ class CreateProjectTable extends Migration
     {
         Schema::create('projects', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name', 200)->unique()->comment = "Tên Project";
+            $table->string('name', 200)->comment = "Tên Project";
             $table->string('description');
             $table->unsignedTinyInteger('status')->default(1)->comment = "Trạng thái 0 và 1";            
             $table->timestamps();

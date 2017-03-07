@@ -15,7 +15,7 @@ class CreateJobTable extends Migration
     {
         Schema::create('jobs', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('title', 200)->unique()->comment = "Tên tác vụ";
+            $table->string('title', 200)->comment = "Tên tác vụ";
             $table->text('description');
             $table->integer('project_id')->comment = "Thuộc dự án";
             $table->integer('channel_id')->comment = "Thuộc kênh";

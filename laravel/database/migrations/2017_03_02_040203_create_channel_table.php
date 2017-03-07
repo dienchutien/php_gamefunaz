@@ -15,7 +15,7 @@ class CreateChannelTable extends Migration
     {
         Schema::create('channel', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name', 200)->unique()->comment = "Tên Kenh";
+            $table->string('name', 200)->comment = "Tên Kenh";
             $table->string('description');
             $table->unsignedTinyInteger('status')->default(1)->comment = "Trạng thái 0 và 1";            
             $table->unsignedInteger('admin_modify');
