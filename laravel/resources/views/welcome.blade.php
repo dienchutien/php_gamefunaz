@@ -79,7 +79,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Tool marketing
+                    Marketing Tool 
                 </div>
 
                 <div class="links">

@@ -67,7 +67,7 @@
         <div class="col-xs-12 col-sm-6 no-padding">
             <label for="job_type" class="col-xs-12 col-sm-3 control-label text-left">Chọn Loại tác vụ</label>
             <div class="col-xs-12 col-sm-6 no-padding">
-                <select class="form-control input-sm " id="job_type" name="job_type">
+                <select class="form-control input-sm " id="job_type" name="job_type"<?php if(isset($a_Jobs->job_type) && $a_Jobs->job_type == 0 && $a_Jobs->is_payment == 1) echo 'disabled';?>>
                     <option value="">Chọn Loại tác vụ</option>
                     <option value="0" <?php if(isset($a_Jobs->job_type) && $a_Jobs->job_type == 0) echo 'selected';?> >Tác vụ trả trước</option>
                     <option value="1" <?php if(isset($a_Jobs->job_type) && $a_Jobs->job_type == 1) echo 'selected';?>>Tác vụ trả sau</option>
