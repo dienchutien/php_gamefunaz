@@ -10,8 +10,8 @@
     <div class="form-group">
         <div class="col-xs-12 col-sm-6 no-padding">
             <label for="name" class="col-xs-12 col-sm-3 control-label text-left">Tiêu đề</label>
-            <div class="col-xs-12 col-sm-9 no-padding">
-                <input id="title" name="title" field-name="Tên" <?php echo $i_id == 0 ? '' : 'old_val="'.$a_Jobs->title.'"'?> type="text" value="<?php echo isset($a_Jobs->title)?$a_Jobs->title:"" ?>" class="form-control check-duplicate" placeholder="Tiêu đề" required />
+            <div class="col-xs-12 col-sm-6 no-padding">
+                <input id="title" name="title" field-name="Tên" <?php echo $i_id == 0 ? '' : 'old_val="'.$a_Jobs->title.'"'?> type="text" value="<?php echo isset($a_Jobs->title)?$a_Jobs->title:"" ?>" class="form-control" placeholder="Tiêu đề" required />
             </div>
         </div>
     </div>
@@ -24,6 +24,14 @@
         </div>
     </div>
     
+    <div class="form-group">
+        <div class="col-xs-12 col-sm-6 no-padding">
+            <label for="money" class="col-xs-12 col-sm-3 control-label text-left">Số tiền</label>
+            <div class="col-xs-12 col-sm-6 no-padding">
+                <input id="money" name="money" field-name="money" type="text" value="@if(isset($a_Jobs->money)){{($a_Jobs->money)}} @endif" class="form-control" placeholder="so tien" required />
+            </div>
+        </div>
+    </div>    
     <div class="form-group">
         <div class="col-xs-12 col-sm-6 no-padding">
             <label for="projects" class="col-xs-12 col-sm-3 control-label text-left">Chọn Dự Án</label>

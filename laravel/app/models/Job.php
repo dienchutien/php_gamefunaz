@@ -40,6 +40,8 @@ class Job extends Model
         $a_DataUpdate['job_type'] = Input::get('job_type');// 0 la tra truoc, 1 la tra sau
         
         $a_DataUpdate['admin_modify'] = Auth::user()->id;
+        $a_DataUpdate['money'] = (int)str_replace(' ','',Input::get('money'));
+
         $a_DataUpdate['updated_at'] = date('Y-m-d H:i:s', time());
         
         if (is_numeric($id) == true && $id != 0) {
@@ -135,8 +137,7 @@ class Job extends Model
             $val->stt = $key + 1;
             $val->project = $this->o_Project->getProjectById($val->project_id)->name;
             $val->channel = $this->o_Channel->getChanneltById($val->channel_id)->name;
-            $val->user = $this->o_user->GetUserById($val->admin_modify)->email;
-            
+            $val->user = $this->o_user->GetUserById($val->admin_modify)->email;            
             $val->date_finish = Util::sz_DateFinishFormat($val->date_finish);
             $val->updated_at = Util::sz_DateTimeFormat($val->updated_at);
         }
