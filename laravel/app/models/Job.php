@@ -28,7 +28,7 @@ class Job extends Model
      * @Des: Add/edit project
      * @Since: 02/03/2017
      */
-    public function AddEditProject($id) {
+    public function AddEditJob($id) {
         $a_DataUpdate = array();
         $a_DataUpdate['title'] = Input::get('title');
         $a_DataUpdate['status'] = Input::get('status') == 'on' ? 1 : 0;
@@ -38,14 +38,22 @@ class Job extends Model
         $time_finish = Input::get('date_finish');
         $a_DataUpdate['date_finish'] = date('Y-m-d',strtotime($time_finish));
         $a_DataUpdate['job_type'] = Input::get('job_type');// 0 la tra truoc, 1 la tra sau
-        $a_DataUpdate['is_payment']  = Input::get('job_type') == 0 ? 0 : 1;
+        
         $a_DataUpdate['admin_modify'] = Auth::user()->id;
         $a_DataUpdate['updated_at'] = date('Y-m-d H:i:s', time());
         
         if (is_numeric($id) == true && $id != 0) {
+            if(Input::get('job_type') == 1){// => tra sau
+                $a_DataUpdate['is_payment'] = 1;
+            }else{
+                $o_Job = $this->getJobById($id);
+                if($o_Job->job_type == 1) $a_DataUpdate['is_payment'] = 0; // tra sau => tra truoc
+            }
             DB::table('jobs')->where('id', $id)->update($a_DataUpdate);
         } else {
             $a_DataUpdate['created_at'] = date('Y-m-d H:i:s', time());
+            $a_DataUpdate['is_payment']  = Input::get('job_type') == 0 ? 0 : 1;
+            
             DB::table('jobs')->insert($a_DataUpdate);
         }
     }
@@ -81,7 +89,7 @@ class Job extends Model
         $i_is_payment = Input::get('is_payment','');
         if($i_is_payment != '') {
             $a_search['i_is_payment'] = $i_is_payment;
-            $a_data = $o_Db->where('status', $i_is_payment);
+            $a_data = $o_Db->where('is_payment', $i_is_payment);
         }        
         
         $sz_title_name = Input::get('title_name','');

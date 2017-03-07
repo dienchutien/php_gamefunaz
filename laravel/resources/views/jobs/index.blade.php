@@ -7,8 +7,8 @@
     <div class="form-group">
         <select id="is_payment" name="is_payment" class="form-control input-sm">
             <option value="">Trạng thái</option>
-            <option value="1" <?php echo isset($a_search['i_is_payment']) && $a_search['i_is_payment'] == 1 ? 'selected':''?>>Đã thanh toán</option>
-            <option value="0" <?php echo isset($a_search['i_is_payment']) && $a_search['i_is_payment'] == 0 ? 'selected':''?>>Chưa thanh toán</option>            
+            <option value="1" <?php echo isset($a_search['i_is_payment']) && $a_search['i_is_payment'] == 1 ? 'selected':''?>>Đã tổng hợp</option>
+            <option value="0" <?php echo isset($a_search['i_is_payment']) && $a_search['i_is_payment'] == 0 ? 'selected':''?>>Chưa tổng hợp</option>            
         </select>
     </div>
     <div class="form-group">
