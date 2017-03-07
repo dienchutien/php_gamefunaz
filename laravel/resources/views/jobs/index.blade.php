@@ -89,16 +89,20 @@
                     <a title="Edit" href="<?php echo Request::root().'/job/addedit?id='.$a_val->id;?>" title="Edit" class="not-underline">
                         <i class="fa fa-edit fw"></i>
                     </a>
+                    <?php if($a_val->job_type != 0 || $a_val->is_payment !=1){?>
                     <a id="trash_switch_" href="javascript:GLOBAL_JS.v_fDelRow({{ $a_val->id }},1)" title="Cho vào thùng rác" class="not-underline">
                     <i class="fa fa-trash fa-fw text-danger"></i>
                     </a>
+                    <?php }?>
                     <?php }else{ ?>
                     <a title="Khôi phục user" href="javascript:GLOBAL_JS.v_fRecoverRow({{ $a_val->id }})"  title="Edit" class="not-underline">
                         <i class="fa fa-upload fw"></i>
                     </a>
+                    <?php if($a_val->job_type != 0 || $a_val->is_payment !=1){?>
                     <a id="trash_switch_" href="javascript:GLOBAL_JS.v_fDelRow({{ $a_val->id }},2)" title="Xóa vĩnh viễn" class="not-underline">
                         <i class="fa fa-trash-o fa-fw text-danger"></i>
                     </a>
+                    <?php }?>
                     <?php }?>
                 </td>
             </tr>
