@@ -38,7 +38,7 @@ class JobController extends Controller
         $productname = Input::get('submit');
         if (isset($productname) && $productname != "") {
             $this->o_Job->AddEditProject($job_id);
-                return redirect('list_projects')->with('status', 'Cập nhật thành công!');
+                return redirect('list_job')->with('status', 'Cập nhật thành công!');
         }
         
         //get all project view

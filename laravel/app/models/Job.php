@@ -61,7 +61,7 @@ class Job extends Model
         $a_Data = DB::table('jobs')->where('id', $id)->first();
         if (count($a_Data) > 0){
             $a_Data->created_at = Util::sz_DateTimeFormat($a_Data->created_at);
-            $a_Data->date_finish = Util::sz_DateTimeFormat($a_Data->date_finish);
+            $a_Data->date_finish = Util::sz_DateFinishFormat($a_Data->date_finish);
             $a_Data->updated_at = Util::sz_DateTimeFormat($a_Data->updated_at);
         }
         return $a_Data;
@@ -111,7 +111,7 @@ class Job extends Model
         $sz_from_date = Input::get('from_date','');
         if($sz_from_date != '') {
             $a_search['from_date'] = $sz_from_date;
-            $a_data = $o_Db->where('date_finish','>=', date('Y-m-d',strtotime($time_finish)));
+            $a_data = $o_Db->where('date_finish','>=', date('Y-m-d',strtotime($sz_from_date)));
            
         }
         
@@ -122,14 +122,14 @@ class Job extends Model
            
         }
         
-        $a_data = $o_Db->orderBy('id', 'asc')->paginate(1);
+        $a_data = $o_Db->orderBy('updated_at', 'desc')->paginate(30);
         foreach ($a_data as $key => &$val) {
             $val->stt = $key + 1;
             $val->project = $this->o_Project->getProjectById($val->project_id)->name;
             $val->channel = $this->o_Channel->getChanneltById($val->channel_id)->name;
             $val->user = $this->o_user->GetUserById($val->admin_modify)->email;
             
-            $val->created_at = Util::sz_DateTimeFormat($val->created_at);
+            $val->date_finish = Util::sz_DateFinishFormat($val->date_finish);
             $val->updated_at = Util::sz_DateTimeFormat($val->updated_at);
         }
         $a_return = array('a_data' => $a_data, 'a_search' => $a_search);

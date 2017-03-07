@@ -54,6 +54,11 @@ class Util extends Model
      */
     public static function sz_DateTimeFormat($date_time){
         $date = date_create($date_time);
-        return date_format($date,"d/m/Y H:i:s");
+        return date_format($date,"m/d/Y H:i:s");
+    }
+    
+    public static function sz_DateFinishFormat($date_time){
+        $date = date_create($date_time);
+        return date_format($date,"m/d/Y");
     }
 }

@@ -48,7 +48,7 @@
                 @foreach($a_channels as $a_channel )
                 <option value="{{$a_channel->id}} <?php echo isset($a_search['channel']) && $a_search['channel'] == $a_channel->id ? 'selected':''?> ">{{$a_channel->name}}</option>
                 @endforeach
-            @endif             
+            @endif
         </select>
     </div>
     
@@ -60,15 +60,15 @@
     <div class="">
         <table class="table table-responsive table-hover table-striped table-bordered">
             <tr>
-                <td><strong>STT</strong></td>
-                <td><strong>Dự án</strong></td>
-                <td><strong>Kênh</strong></td>
-                <td><strong>Tiêu Đề</strong></td>
-                <td><strong>Người cập nhật</strong></td>
-                <td><strong>Trạng thái</strong></td>
-                <td><strong>ngày hoàn thành</strong></td>
-                <td><strong>Ngày sửa</strong></td>
-                <td><strong>Action</strong></td>
+                <td class="bg-success"><strong>STT</strong></td>
+                <td class="bg-success"><strong>Dự án</strong></td>
+                <td class="bg-success"><strong>Kênh</strong></td>
+                <td class="bg-success"><strong>Tiêu Đề</strong></td>
+                <td class="bg-success"><strong>Người cập nhật</strong></td>
+                <td class="bg-success"><strong>Trạng thái</strong></td>
+                <td class="bg-success"><strong>ngày hoàn thành</strong></td>
+                <td class="bg-success"><strong>Ngày sửa</strong></td>
+                <td class="bg-success"><strong>Action</strong></td>
             </tr>
         @foreach ($a_Jobs as $a_val)
             <tr>
@@ -77,15 +77,14 @@
                 <td>    {{ $a_val->channel }}</td>
                 <td>    {{ $a_val->title }}</td>
                 <td>    {{ $a_val->user }}</td>
-                <th class="text-center"> <input id="status_<?= $a_val->id;?>" name="status_<?=$a_val->id;?>" type="checkbox" class="" value="1" <?php if($a_val->status == 1) echo "checked"?> disabled/></th>
-                <td>    ngay hoan thanh</td>
-                <td>    {{ $a_val->created_at }}</td>
+                <td> @if($a_val->job_type == 0) Trả trước @else Trả sau @endif  @if($a_val->is_payment == 0) (chưa tổng hợp) @endif</td>
+                <td>    {{ $a_val->date_finish }}</td>
                 <td>    {{ $a_val->updated_at }}</td>
-                <td>                    
+                <td>
                     <?php
                         if($a_val->status == 1 || $a_val->status == 0){
                     ?>
-                    <a title="Edit" href="<?php echo Request::root().'/department/addedit?id='.$a_val->id;?>" title="Edit" class="not-underline">
+                    <a title="Edit" href="<?php echo Request::root().'/job/addedit?id='.$a_val->id;?>" title="Edit" class="not-underline">
                         <i class="fa fa-edit fw"></i>
                     </a>
                     <a id="trash_switch_" href="javascript:GLOBAL_JS.v_fDelRow({{ $a_val->id }},1)" title="Cho vào thùng rác" class="not-underline">
@@ -99,7 +98,7 @@
                         <i class="fa fa-trash-o fa-fw text-danger"></i>
                     </a>
                     <?php }?>
-                </td>                
+                </td>
             </tr>
         @endforeach
         </table>
