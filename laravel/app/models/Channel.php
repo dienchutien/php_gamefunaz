@@ -65,6 +65,9 @@ class Channel extends Model
         $a_DataUpdate['status'] = Input::get('status') == 'on' ? 1 : 0;
         $a_DataUpdate['description'] = '';
         $a_DataUpdate['admin_modify'] = Auth::user()->id;
+        $a_DataUpdate['parent_id'] = Input::get('parent_id');
+        $a_DataUpdate['level'] = (int)$this->getChanneltById(Input::get('parent_id'))->level + 1;
+        
         if (is_numeric($id) == true && $id != 0) {
             $a_DataUpdate['updated_at'] = date('Y-m-d H:i:s', time());
             DB::table('channel')->where('id', $id)->update($a_DataUpdate);

@@ -25,7 +25,7 @@
                     <option value="0"><span class="text-center">Danh mục gốc</span></option>
                     @if(count($aryAllChannel) > 0)
                         @foreach($aryAllChannel as $key => $val )
-                        <option value="{{$key}}" <?php echo isset($a_Jobs->channel_id) && $a_Jobs->channel_id == $key ? 'selected':''?> > @if($val['level'] == 1) --- @endif {{$val['name']}}</option>
+                        <option value="{{$key}}" <?php echo isset($a_Channel->parent_id) && $a_Channel->parent_id == $key ? 'selected':''?> > @if($val['level'] == 1) --- @endif {{$val['name']}}</option>
                         @endforeach
                     @endif                    
                 </select>
