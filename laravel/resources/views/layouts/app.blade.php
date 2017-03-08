@@ -119,7 +119,7 @@
                             <ul class="nav nav-second-level collapse" aria-expanded="false">
                                 <li class=""><a class="" href="<?php echo Request::root()."/list_job"?>">Danh sách tác vụ</a></li>
                                 <li><a class="" href="<?php echo Request::root()."/job/addedit"?>">Thêm tác vụ</a></li>
-                                <li><a class="" href="<?php echo Request::root()."/job/statistic"?>">Thống kê tác vụ</a></li>
+                                <li><a class="" href="#"">Thống kê tác vụ</a></li>
                             </ul>                            
                         </li>
                     </ul>
