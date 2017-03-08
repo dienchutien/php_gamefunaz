@@ -41,4 +41,5 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('list_job', 'JobController@getAllJob');
     Route::get('job/addedit', 'JobController@addEditJob');
     Route::post('job/addedit','JobController@addEditJob');
+    Route::get('export_excel_Jobs', 'JobController@exportJob');
 });

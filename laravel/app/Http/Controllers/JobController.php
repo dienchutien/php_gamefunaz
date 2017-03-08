@@ -9,6 +9,9 @@ use App\models\Projects;
 use App\models\Channel;
 use App\models\Supplier;
 use App\User;
+use Illuminate\Support\Facades\Session;
+use DB;
+use Maatwebsite\Excel\Facades\Excel;
 
 class JobController extends Controller
 {
@@ -84,5 +87,57 @@ class JobController extends Controller
 
         return view('jobs.index',$Data_view);
         
+    }
+    
+    //Export excel
+    public function exportJob(){
+        
+        $sz_Sql = Session::get('sqlGetJob');        
+//        $a_Select = explode('from', $sz_Sql);
+//        $a_Select[0] = str_replace("`name`","`name` as `Tên`",$a_Select[0]);
+//        $a_Select[0] = str_replace("`department_name`","`department_name` as `Phòng`",$a_Select[0]);
+//        $a_Select[0] = str_replace("`code`","`code` as `MNV`",$a_Select[0]);
+//        $sz_Sql = $a_Select[0].'from'.$a_Select[1];
+        if(strpos($sz_Sql, 'limit') !== false){
+            $arr =  explode('limit',$sz_Sql);
+            $sz_Sql = $arr[0];
+        }
+        
+
+
+        $a_Data = DB::select(DB::raw($sz_Sql));        
+
+        try{
+            Excel::create('Danh_Sach_JOb', function($excel) use($a_Data) {
+                // Set the title
+                $excel->setTitle('no title');
+                $excel->setCreator('Dienct')->setCompany('no company');
+                $excel->setDescription('report file');
+                $excel->sheet('sheet1', function($sheet) use($a_Data) {
+                    foreach ($a_Data as $key => $o_person) {
+
+//                        unset($o_person->id);
+//                        unset($o_person->user_id);
+//                        unset($o_person->email);
+//                        unset($o_person->department_id);
+                        $ary[] = (array) $o_person;
+                        
+                    }
+                    if(isset($ary)){
+                        $sheet->fromArray($ary);
+                    }
+                    $sheet->cells('A1:BM1', function($cells) {
+                        $cells->setFontWeight('bold');
+                        $cells->setBackground('#AAAAFF');
+                        $cells->setFont(array(
+                            'bold' => true
+                        ));
+                    });
+                });
+            })->download('xlsx');
+        }catch (\Exception $e){
+            echo $e->getMessage();
+        }
+
     }
 }

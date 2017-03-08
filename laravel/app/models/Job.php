@@ -11,6 +11,7 @@ use App\models\Projects;
 use App\User;
 use App\models\Channel;
 use App\models\Supplier;
+use Illuminate\Support\Facades\Session;
 
 class Job extends Model
 {
@@ -87,6 +88,7 @@ class Job extends Model
      * @Since: 06/03/2017
      */
     public function getAllSearch() {
+        DB::connection()->enableQueryLog();
         $a_data = array();
         $o_Db = DB::table('jobs')->select('*');
         $a_search = array();
@@ -145,6 +147,19 @@ class Job extends Model
         }
         
         $a_data = $o_Db->orderBy('updated_at', 'desc')->paginate(30);
+        // sql
+        $query = DB::getQueryLog();
+        $query = end($query);
+        foreach ($query['bindings'] as $i => $binding) {
+            $query['bindings'][$i] = "'$binding'";
+        }
+
+        $sz_query_change = str_replace(array('%', '?'), array('%%', '%s'), $query['query']);
+        $sz_SqlFull = vsprintf($sz_query_change, $query['bindings']);        
+
+        // save session
+        Session::put('sqlGetJob', $sz_SqlFull);
+        
         $money_total = 0;
         foreach ($a_data as $key => &$val) {
             $val->stt = $key + 1;
