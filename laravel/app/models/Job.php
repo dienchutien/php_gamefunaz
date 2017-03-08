@@ -10,17 +10,20 @@ use Auth;
 use App\models\Projects;
 use App\User;
 use App\models\Channel;
+use App\models\Supplier;
 
 class Job extends Model
 {
     private $o_Project;
     private $o_Channel;
     private $o_User;
+    private $o_Supplier;
 
     public function __construct() {
         $this->o_Project = new Projects();
         $this->o_Channel = new Channel();
         $this->o_user = new User();
+        $this->o_Supplier = new Supplier();
     }
     
     /**
@@ -113,6 +116,12 @@ class Job extends Model
             $a_data = $o_Db->where('project_id', $i_project);
         }
         
+        $i_supplier = Input::get('supplier','');
+        if($i_supplier != '') {
+            $a_search['supplier'] = $i_supplier;
+            $a_data = $o_Db->where('supplier_id', $i_supplier);
+        }
+        
         $i_channel = Input::get('channel','');
         if($i_channel != '') {
             $a_search['channel'] = $i_channel;
@@ -139,8 +148,9 @@ class Job extends Model
         $money_total = 0;
         foreach ($a_data as $key => &$val) {
             $val->stt = $key + 1;
-            $val->project = $this->o_Project->getProjectById($val->project_id)->name;
-            $val->channel = $this->o_Channel->getChanneltById($val->channel_id)->name;
+            $val->project = isset($this->o_Project->getProjectById($val->project_id)->name)? $this->o_Project->getProjectById($val->project_id)->name : 'khong xac dinh';
+            $val->supplier = isset($this->o_Supplier->getSupplierById($val->supplier_id)->name) ? $this->o_Supplier->getSupplierById($val->supplier_id)->name : 'ko xac dinh';
+            $val->channel = isset($this->o_Channel->getChanneltById($val->channel_id)->name) ? $this->o_Channel->getChanneltById($val->channel_id)->name : 'khong xac dinh';
             $val->user = $this->o_user->GetUserById($val->admin_modify)->email;            
             $val->date_finish = Util::sz_DateFinishFormat($val->date_finish);
             $val->updated_at = Util::sz_DateTimeFormat($val->updated_at);
