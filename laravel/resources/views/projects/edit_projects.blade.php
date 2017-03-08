@@ -11,7 +11,7 @@
         <div class="col-xs-12 col-sm-6 no-padding">
             <label for="name" class="col-xs-12 col-sm-3 control-label text-left">Tên Dự Án</label>
             <div class="col-xs-12 col-sm-9 no-padding">
-                <input id="name" name="name" field-name="Tên" <?php echo $i_id == 0 ? '' : 'old_val="'.$a_Project->name.'"'?> type="text" value="<?php echo isset($a_Project->name)?$a_Project->name:"" ?>" class="form-control check-duplicate" placeholder="Tên phòng ban" required />
+                <input id="name" name="name" field-name="Tên"  type="text" value="<?php echo isset($a_Project->name)?$a_Project->name:"" ?>" class="form-control check-duplicate" placeholder="Tên Dự Án" required />
             </div>
         </div>
         

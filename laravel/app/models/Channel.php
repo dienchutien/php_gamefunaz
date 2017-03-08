@@ -74,4 +74,25 @@ class Channel extends Model
             DB::table('channel')->insert($a_DataUpdate);
         }
     }
+    
+    /**
+
+     * @Auth: Dienct
+     * @Des : get all channel by parent id- default = 0
+     * @since: 8/3/2017
+     * 
+     */
+    public function getAllChannelByParentID($parent_id = 0, &$aryChildID) {
+        $aryResult = DB::table('channel')->select('id', 'name', 'level')->where('parent_id', $parent_id)->get();
+
+        foreach ($aryResult as $o_val) {
+            $ary = array();
+            $ary['name'] = $o_val->name;
+            $ary['level'] = $o_val->level;
+                $aryChildID[$o_val->id] = $ary;
+            if (!empty($aryResult)) {
+                $this->getAllChannelByParentID($o_val->id, $aryChildID);
+            }
+        }
+    }
 }
