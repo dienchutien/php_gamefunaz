@@ -26,7 +26,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('list_projects', 'ProjectsController@getAllProject');    
     Route::get('projects/addedit', 'ProjectsController@ListProjects');
     Route::post('projects/addedit','ProjectsController@ListProjects');
-        
+    
+    // Route Project
+    Route::get('list_supplier', 'SupplierController@getAllSupplier');
+    Route::get('supplier/addedit', 'SupplierController@addEditSupplier');
+    Route::post('supplier/addedit','SupplierController@addEditSupplier');
+
     // Route Channel
     Route::get('list_channel', 'ChannelController@getAllChannel');
     Route::get('channel/addedit', 'ChannelController@addEditChannel');
