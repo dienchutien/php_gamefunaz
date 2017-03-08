@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateProjectTable extends Migration
+class CreateSupplierTables extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,9 @@ class CreateProjectTable extends Migration
      */
     public function up()
     {
-        Schema::create('projects', function (Blueprint $table) {
+        Schema::create('supplier', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name', 200)->comment = "Tên Project";
-            $table->string('description');
+            $table->string('name', 200)->comment = "Tên nha cung cap";
             $table->unsignedTinyInteger('status')->default(1)->comment = "Trạng thái 0 và 1";
             $table->timestamps();
         });
@@ -29,6 +28,6 @@ class CreateProjectTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('projects');
+        Schema::dropIfExists('supplier');
     }
 }

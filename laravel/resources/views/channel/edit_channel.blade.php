@@ -13,9 +13,25 @@
             <div class="col-xs-12 col-sm-9 no-padding">
                 <input id="name" name="name" field-name="Tên" <?php echo $i_id == 0 ? '' : 'old_val="'.$a_Channel->name.'"'?> type="text" value="<?php echo isset($a_Channel->name)?$a_Channel->name:"" ?>" class="form-control check-duplicate" placeholder="Tên kênh" required />
             </div>
-        </div>
+        </div>        
         
-    </div>    
+    </div>
+    
+    <div class="form-group">
+        <div class="col-xs-12 col-sm-6 no-padding">
+            <label for="parent_id" class="col-xs-12 col-sm-3 control-label text-left">Chọn kênh cha</label>
+            <div class="col-xs-12 col-sm-6 no-padding">
+                <select class="form-control input-sm " id="parent_id" name="parent_id">
+                    <option value="0"><span class="text-center">Danh mục gốc</span></option>
+                    @if(count($aryAllChannel) > 0)
+                        @foreach($aryAllChannel as $key => $val )
+                        <option value="{{$key}}" <?php echo isset($a_Channel->parent_id) && $a_Channel->parent_id == $key ? 'selected':''?> > @if($val['level'] == 1) --- @endif {{$val['name']}}</option>
+                        @endforeach
+                    @endif                    
+                </select>
+            </div>
+        </div>
+    </div>
    
     <div class="form-group">
         <div class="col-xs-12 col-sm-3 no-padding">

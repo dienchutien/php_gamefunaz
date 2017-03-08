@@ -41,14 +41,25 @@
                     
         </select>
     </div>
+    
+    <div class="form-group">
+        <select id="supplier" name="supplier" class="form-control input-sm">
+            <option value="">Nhà cung cấp</option>
+            @if(count($a_supplier) > 0)
+                @foreach($a_supplier as $o_supplier )
+                <option value="{{$o_supplier->id}}" <?php echo isset($a_search['supplier']) && $a_search['supplier'] == $o_supplier->id ? 'selected':''?> >{{$o_supplier->name}}</option>
+                @endforeach
+            @endif             
+        </select>
+    </div>
     <div class="form-group">
         <select id="channel" name="channel" class="form-control input-sm">
             <option value="">Kênh</option>
-            @if(count($a_channels) > 0)
-                @foreach($a_channels as $a_channel )
-                <option value="{{$a_channel->id}} <?php echo isset($a_search['channel']) && $a_search['channel'] == $a_channel->id ? 'selected':''?> ">{{$a_channel->name}}</option>
-                @endforeach
-            @endif
+                    @if(count($aryAllChannel) > 0)
+                        @foreach($aryAllChannel as $key => $val )
+                        <option value="{{$key}}" <?php echo isset($a_search['channel']) && $a_search['channel'] == $key ? 'selected':''?> > @if($val['level'] == 1) --- @endif {{$val['name']}}</option>
+                        @endforeach
+                    @endif  
         </select>
     </div>
     
@@ -60,8 +71,10 @@
     <div class="">
         <table class="table table-responsive table-hover table-striped table-bordered">
             <tr>
+                <th class="bg-success"><input type="checkbox" id="check_all" class="checkAll"></th>
                 <td class="bg-success"><strong>STT</strong></td>
                 <td class="bg-success"><strong>Dự án</strong></td>
+                <td class="bg-success"><strong>Nhà cung cấp</strong></td>
                 <td class="bg-success"><strong>Kênh</strong></td>
                 <td class="bg-success"><strong>Tiêu Đề</strong></td>
                 <td class="bg-success"><strong>Người cập nhật</strong></td>
@@ -73,8 +86,10 @@
             </tr>
         @foreach ($a_Jobs as $a_val)
             <tr>
+                <td><input type="checkbox" class="chk_item" value="{{ $a_val->id }}" name="check[]"/></td>
                 <td>    {{ $a_val->stt }}</td>
                 <td>    {{ $a_val->project }}</td>
+                <td>    {{ $a_val->supplier }}</td>
                 <td>    {{ $a_val->channel }}</td>
                 <td>    {{ $a_val->title }}</td>
                 <td>    {{ $a_val->user }}</td>
@@ -108,6 +123,13 @@
             </tr>
         @endforeach
         </table>
+        <div class="form-group">
+            <div class="col-xs-12 col-sm-2 no-padding">
+                <a class="btn btn-primary btn-sm" href="/export_excel_Jobs" target="_blank">Export Excel</a>
+            </div>
+            <strong class="text-left text-danger">TỔNG TIÊN:  {{number_format($money_total)}} (VNĐ)</strong>
+        </div>
+              
     </div>
 
 <!--Hidden input-->

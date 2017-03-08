@@ -39,8 +39,10 @@ class ChannelController extends Controller
         }
 
         $a_DataView = $this->o_Channel->getChanneltById($channelId);
+        $aryAllChannel = array();
+        $this->o_Channel->getAllChannelByParentID(0, $aryAllChannel);
 
-        return view('channel.edit_channel', ['a_Channel' => $a_DataView, 'i_id' => $channelId]);
+        return view('channel.edit_channel', ['a_Channel' => $a_DataView, 'i_id' => $channelId, 'aryAllChannel'=>$aryAllChannel]);
 
         ///get data department one record///
     }

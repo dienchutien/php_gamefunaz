@@ -41,10 +41,10 @@ return [
 
         'mysql' => [
             'driver' => 'mysql',
-            'host' => env('DB_HOST', '127.0.0.1'),
+            'host' => env('DB_HOST', '10.0.81.217'),
             'port' => env('DB_PORT', '3306'),
-            'database' => env('DB_DATABASE', 'cp_marketing'),
-            'username' => env('DB_USERNAME', 'root'),
+            'database' => env('DB_DATABASE', 'admin_mktTool'),
+            'username' => env('DB_USERNAME', 'admin_mktTool'),
             'password' => env('DB_PASSWORD', 'Abc123!@#'),
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',

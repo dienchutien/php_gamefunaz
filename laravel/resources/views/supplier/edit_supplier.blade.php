@@ -1,17 +1,17 @@
 @extends('layouts.app')
 @section('content')
 
-<h3 class="col-xs-12 no-padding"><?php echo $i_id == ''?'Thêm dự án mới':'Sửa dự án'?></h3>
+<h3 class="col-xs-12 no-padding"><?php echo $i_id == ''?'Thêm nhà cung cấp mới':'Sửa nhà cung cấp'?></h3>
 <div class="alert alert-danger hide"></div>
 <form class="form-horizontal" method="post" action="">
     <input type="hidden" name="_token" value="{!! csrf_token() !!}">
     <input type="hidden" id="id" value="<?php echo $i_id?>">
-    <input type="hidden" id="tbl" value="projects">
+    <input type="hidden" id="tbl" value="supplier">
     <div class="form-group">
         <div class="col-xs-12 col-sm-6 no-padding">
-            <label for="name" class="col-xs-12 col-sm-3 control-label text-left">Tên Dự Án</label>
+            <label for="name" class="col-xs-12 col-sm-3 control-label text-left">Tên nhà cung cấp</label>
             <div class="col-xs-12 col-sm-9 no-padding">
-                <input id="name" name="name" field-name="Tên"  type="text" value="<?php echo isset($a_Project->name)?$a_Project->name:"" ?>" class="form-control check-duplicate" placeholder="Tên Dự Án" required />
+                <input id="name" name="name" field-name="Tên"  type="text" value="<?php echo isset($a_Supplier->name)?$a_Supplier->name:"" ?>" class="form-control check-duplicate" placeholder="Tên" required />
             </div>
         </div>
         
@@ -21,7 +21,7 @@
         <div class="col-xs-12 col-sm-3 no-padding">
             <label for="status" class="col-xs-6 control-label text-left">Trạng thái hiển thị</label>
             <div class="col-xs-6 no-left-padding">
-                <input id="status" name="status" type="checkbox" class="form-control" <?php if (isset($a_Project->status) && $a_Project->status): ?>checked<?php endif ?>>
+                <input id="status" name="status" type="checkbox" class="form-control" <?php if (isset($a_Supplier->status) && $a_Supplier->status): ?>checked<?php endif ?>>
             </div>
         </div>
     </div>

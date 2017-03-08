@@ -65,6 +65,9 @@ class Channel extends Model
         $a_DataUpdate['status'] = Input::get('status') == 'on' ? 1 : 0;
         $a_DataUpdate['description'] = '';
         $a_DataUpdate['admin_modify'] = Auth::user()->id;
+        $a_DataUpdate['parent_id'] = Input::get('parent_id');
+        $a_DataUpdate['level'] = (int)$this->getChanneltById(Input::get('parent_id'))->level + 1;
+        
         if (is_numeric($id) == true && $id != 0) {
             $a_DataUpdate['updated_at'] = date('Y-m-d H:i:s', time());
             DB::table('channel')->where('id', $id)->update($a_DataUpdate);
@@ -72,6 +75,43 @@ class Channel extends Model
             $a_DataUpdate['created_at'] = date('Y-m-d H:i:s', time());
             $a_DataUpdate['updated_at'] = date('Y-m-d H:i:s', time());
             DB::table('channel')->insert($a_DataUpdate);
+        }
+    }
+    
+    /**
+
+     * @Auth: Dienct
+     * @Des : get all channel by parent id- default = 0
+     * @since: 8/3/2017
+     * 
+     */
+    public function getAllChannelByParentID($parent_id = 0, &$aryChildID) {
+        $aryResult = DB::table('channel')->select('id', 'name', 'level')->where('parent_id', $parent_id)->get();
+
+        foreach ($aryResult as $o_val) {
+            $ary = array();
+            $ary['name'] = $o_val->name;
+            $ary['level'] = $o_val->level;
+                $aryChildID[$o_val->id] = $ary;
+            if (!empty($aryResult)) {
+                $this->getAllChannelByParentID($o_val->id, $aryChildID);
+            }
+        }
+    }
+    
+    /**
+     * @Auth: Dienct
+     * @Des : get all channel ChildID by parent id- default = 0
+     * @since: 8/3/2017
+     * 
+     */
+    public function getAllChannelIDByParentID($parent_id = 0, &$aryChildID) {
+        $aryResult = DB::table('channel')->select('id', 'name', 'level')->where('parent_id', $parent_id)->get();
+        foreach ($aryResult as $o_val) {
+                $aryChildID[] = $o_val->id;
+            if (!empty($aryResult)) {
+                $this->getAllChannelIDByParentID($o_val->id, $aryChildID);
+            }
         }
     }
 }

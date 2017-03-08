@@ -135,12 +135,17 @@ var GLOBAL_JS = {
     v_fSubmitJobValidate: function ()
     {
         var sz_projects = $('#projects').val();
+        var sz_supplier = $('#supplier').val();
         var sz_channel = $('#channel').val();
         var sz_job_type = $('#job_type').val();
         $('.alert-danger').empty();
 
         if (sz_projects == '') {
             $('.alert-danger').append('<p><strong class="required_name">Bạn cần chọn dự án</strong></p>');
+            $('.alert-danger').removeClass('hide');
+        }
+        if (sz_supplier == '') {
+            $('.alert-danger').append('<p><strong class="required_name">Bạn cần chọn nhà cung cấp</strong></p>');
             $('.alert-danger').removeClass('hide');
         }
 

@@ -10,17 +10,21 @@ use Auth;
 use App\models\Projects;
 use App\User;
 use App\models\Channel;
+use App\models\Supplier;
+use Illuminate\Support\Facades\Session;
 
 class Job extends Model
 {
     private $o_Project;
     private $o_Channel;
     private $o_User;
+    private $o_Supplier;
 
     public function __construct() {
         $this->o_Project = new Projects();
         $this->o_Channel = new Channel();
         $this->o_user = new User();
+        $this->o_Supplier = new Supplier();
     }
     
     /**
@@ -34,6 +38,7 @@ class Job extends Model
         $a_DataUpdate['status'] = Input::get('status') == 'on' ? 1 : 0;
         $a_DataUpdate['description'] = Input::get('description');
         $a_DataUpdate['project_id'] = Input::get('projects');
+        $a_DataUpdate['supplier_id'] = Input::get('supplier');
         $a_DataUpdate['channel_id'] = Input::get('channel');
         $time_finish = Input::get('date_finish');
         $a_DataUpdate['date_finish'] = date('Y-m-d',strtotime($time_finish));
@@ -83,6 +88,7 @@ class Job extends Model
      * @Since: 06/03/2017
      */
     public function getAllSearch() {
+        DB::connection()->enableQueryLog();
         $a_data = array();
         $o_Db = DB::table('jobs')->select('*');
         $a_search = array();
@@ -112,10 +118,18 @@ class Job extends Model
             $a_data = $o_Db->where('project_id', $i_project);
         }
         
+        $i_supplier = Input::get('supplier','');
+        if($i_supplier != '') {
+            $a_search['supplier'] = $i_supplier;
+            $a_data = $o_Db->where('supplier_id', $i_supplier);
+        }
+        
         $i_channel = Input::get('channel','');
         if($i_channel != '') {
             $a_search['channel'] = $i_channel;
-            $a_data = $o_Db->where('channel_id', $i_channel);
+            $this->o_Channel->getAllChannelIDByParentID($i_channel,$aryChildID);
+            $aryChildID[] = $i_channel;
+            $a_data = $o_Db->whereIn('channel_id', $aryChildID);
         }
         
         $sz_from_date = Input::get('from_date','');
@@ -133,15 +147,31 @@ class Job extends Model
         }
         
         $a_data = $o_Db->orderBy('updated_at', 'desc')->paginate(30);
+        // sql
+        $query = DB::getQueryLog();
+        $query = end($query);
+        foreach ($query['bindings'] as $i => $binding) {
+            $query['bindings'][$i] = "'$binding'";
+        }
+
+        $sz_query_change = str_replace(array('%', '?'), array('%%', '%s'), $query['query']);
+        $sz_SqlFull = vsprintf($sz_query_change, $query['bindings']);        
+
+        // save session
+        Session::put('sqlGetJob', $sz_SqlFull);
+        
+        $money_total = 0;
         foreach ($a_data as $key => &$val) {
             $val->stt = $key + 1;
-            $val->project = $this->o_Project->getProjectById($val->project_id)->name;
-            $val->channel = $this->o_Channel->getChanneltById($val->channel_id)->name;
+            $val->project = isset($this->o_Project->getProjectById($val->project_id)->name)? $this->o_Project->getProjectById($val->project_id)->name : 'khong xac dinh';
+            $val->supplier = isset($this->o_Supplier->getSupplierById($val->supplier_id)->name) ? $this->o_Supplier->getSupplierById($val->supplier_id)->name : 'ko xac dinh';
+            $val->channel = isset($this->o_Channel->getChanneltById($val->channel_id)->name) ? $this->o_Channel->getChanneltById($val->channel_id)->name : 'khong xac dinh';
             $val->user = $this->o_user->GetUserById($val->admin_modify)->email;            
             $val->date_finish = Util::sz_DateFinishFormat($val->date_finish);
             $val->updated_at = Util::sz_DateTimeFormat($val->updated_at);
+            $money_total += $val->money;
         }
-        $a_return = array('a_data' => $a_data, 'a_search' => $a_search);
+        $a_return = array('a_data' => $a_data, 'a_search' => $a_search, 'money_total'=>$money_total);
         return $a_return;
     }
 }
