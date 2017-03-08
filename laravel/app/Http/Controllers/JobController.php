@@ -46,13 +46,12 @@ class JobController extends Controller
         $a_DataProjects = $this->o_Project->getAll();
 
         //get channel view
-        $a_DataChannels = array();
-        $a_DataChannels = $this->o_Channel->getAll();
-
+        $aryAllChannel = array();
+        $this->o_Channel->getAllChannelByParentID(0, $aryAllChannel);
 
         $a_DataView = $this->o_Job->getJobById($job_id);
 
-        return view('jobs.edit_jobs', ['a_Jobs' => $a_DataView, 'i_id' => $job_id, 'a_DataProjects'=>$a_DataProjects, 'a_DataChannels'=>$a_DataChannels]);
+        return view('jobs.edit_jobs', ['a_Jobs' => $a_DataView, 'i_id' => $job_id, 'a_DataProjects'=>$a_DataProjects, 'aryAllChannel'=>$aryAllChannel]);
         
     }
     
@@ -68,7 +67,10 @@ class JobController extends Controller
         
         $Data_view['a_users'] = $this->o_user->getAll();
         $Data_view['a_projects'] = $this->o_Project->getAll();
-        $Data_view['a_channels'] = $this->o_Channel->getAll();
+        
+        $aryAllChannel = array();
+        $this->o_Channel->getAllChannelByParentID(0, $aryAllChannel);
+        $Data_view['aryAllChannel'] = $aryAllChannel;
 
         return view('jobs.index',$Data_view);
         

@@ -44,11 +44,11 @@
     <div class="form-group">
         <select id="channel" name="channel" class="form-control input-sm">
             <option value="">Kênh</option>
-            @if(count($a_channels) > 0)
-                @foreach($a_channels as $a_channel )
-                <option value="{{$a_channel->id}} <?php echo isset($a_search['channel']) && $a_search['channel'] == $a_channel->id ? 'selected':''?> ">{{$a_channel->name}}</option>
-                @endforeach
-            @endif
+                    @if(count($aryAllChannel) > 0)
+                        @foreach($aryAllChannel as $key => $val )
+                        <option value="{{$key}}" <?php echo isset($a_search['channel']) && $a_search['channel'] == $key ? 'selected':''?> > @if($val['level'] == 1) --- @endif {{$val['name']}}</option>
+                        @endforeach
+                    @endif  
         </select>
     </div>
     

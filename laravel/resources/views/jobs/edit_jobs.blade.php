@@ -53,12 +53,12 @@
             <label for="channel" class="col-xs-12 col-sm-3 control-label text-left">Chọn Kênh</label>
             <div class="col-xs-12 col-sm-6 no-padding">
                 <select class="form-control input-sm " id="channel" name="channel">
-                    <option value="">Chọn Kênh</option>
-                    @if(count($a_DataChannels) > 0)
-                        @foreach($a_DataChannels as $a_DataChannel )
-                        <option value="{{$a_DataChannel->id}}" <?php echo isset($a_Jobs->channel_id) && $a_Jobs->channel_id == $a_DataChannel->id ? 'selected':''?> >{{$a_DataChannel->name}}</option>
+                    <option value=""><span class="text-center">Chọn kênh</span></option>
+                    @if(count($aryAllChannel) > 0)
+                        @foreach($aryAllChannel as $key => $val )
+                        <option value="{{$key}}" <?php echo isset($a_Jobs->channel_id) && $a_Jobs->channel_id == $key ? 'selected':''?> > @if($val['level'] == 1) --- @endif {{$val['name']}}</option>
                         @endforeach
-                    @endif
+                    @endif                    
                 </select>
             </div>
         </div>
