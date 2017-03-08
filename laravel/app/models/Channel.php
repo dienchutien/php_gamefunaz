@@ -98,4 +98,20 @@ class Channel extends Model
             }
         }
     }
+    
+    /**
+     * @Auth: Dienct
+     * @Des : get all channel ChildID by parent id- default = 0
+     * @since: 8/3/2017
+     * 
+     */
+    public function getAllChannelIDByParentID($parent_id = 0, &$aryChildID) {
+        $aryResult = DB::table('channel')->select('id', 'name', 'level')->where('parent_id', $parent_id)->get();
+        foreach ($aryResult as $o_val) {
+                $aryChildID[] = $o_val->id;
+            if (!empty($aryResult)) {
+                $this->getAllChannelIDByParentID($o_val->id, $aryChildID);
+            }
+        }
+    }
 }

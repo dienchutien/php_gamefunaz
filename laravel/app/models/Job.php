@@ -115,7 +115,9 @@ class Job extends Model
         $i_channel = Input::get('channel','');
         if($i_channel != '') {
             $a_search['channel'] = $i_channel;
-            $a_data = $o_Db->where('channel_id', $i_channel);
+            $this->o_Channel->getAllChannelIDByParentID($i_channel,$aryChildID);
+            $aryChildID[] = $i_channel;
+            $a_data = $o_Db->whereIn('channel_id', $aryChildID);
         }
         
         $sz_from_date = Input::get('from_date','');
