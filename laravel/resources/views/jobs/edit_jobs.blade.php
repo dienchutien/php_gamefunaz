@@ -47,6 +47,22 @@
             </div>
         </div>
     </div>
+    
+    <div class="form-group">
+        <div class="col-xs-12 col-sm-6 no-padding">
+            <label for="supplier" class="col-xs-12 col-sm-3 control-label text-left">Nhà cung cấp</label>
+            <div class="col-xs-12 col-sm-6 no-padding">
+                <select class="form-control input-sm " id="supplier" name="supplier">
+                    <option value="">Chọn nhà cung cấp</option>
+                    @if(count($a_DataSupplier) > 0)
+                        @foreach($a_DataSupplier as $o_DataSupplier )
+                        <option value="{{$o_DataSupplier->id}}" <?php echo isset($a_Jobs->supplier_id) && $a_Jobs->supplier_id == $o_DataSupplier->id ? 'selected':''?> >{{$o_DataSupplier->name}}</option>
+                        @endforeach
+                    @endif
+                </select>
+            </div>
+        </div>
+    </div>
 
     <div class="form-group">
         <div class="col-xs-12 col-sm-6 no-padding">

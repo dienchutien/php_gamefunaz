@@ -7,6 +7,7 @@ use App\models\Job as o_JobModel;
 use Illuminate\Support\Facades\Input;
 use App\models\Projects;
 use App\models\Channel;
+use App\models\Supplier;
 use App\User;
 
 class JobController extends Controller
@@ -20,12 +21,14 @@ class JobController extends Controller
     private $o_Project;
     private $o_Channel;
     private $o_User;
+    private $o_Supplier;
 
     public function __construct() {
         $this->o_Job = new o_JobModel();
         $this->o_Project = new Projects();
         $this->o_Channel = new Channel();
         $this->o_user = new User();
+        $this->o_Supplier = new Supplier();
     }
     /**
      * @Auth: Dienct
@@ -44,6 +47,10 @@ class JobController extends Controller
         //get all project view
         $a_DataProjects = array();
         $a_DataProjects = $this->o_Project->getAll();
+        
+        //get all project view
+        $a_DataSupplier = array();
+        $a_DataSupplier = $this->o_Supplier->getAll();
 
         //get channel view
         $aryAllChannel = array();
@@ -51,7 +58,7 @@ class JobController extends Controller
 
         $a_DataView = $this->o_Job->getJobById($job_id);
 
-        return view('jobs.edit_jobs', ['a_Jobs' => $a_DataView, 'i_id' => $job_id, 'a_DataProjects'=>$a_DataProjects, 'aryAllChannel'=>$aryAllChannel]);
+        return view('jobs.edit_jobs', ['a_Jobs' => $a_DataView, 'i_id' => $job_id, 'a_DataProjects'=>$a_DataProjects, 'aryAllChannel'=>$aryAllChannel, 'a_DataSupplier'=>$a_DataSupplier]);
         
     }
     
