@@ -135,6 +135,7 @@ class Job extends Model
         }
         
         $a_data = $o_Db->orderBy('updated_at', 'desc')->paginate(30);
+        $money_total = 0;
         foreach ($a_data as $key => &$val) {
             $val->stt = $key + 1;
             $val->project = $this->o_Project->getProjectById($val->project_id)->name;
@@ -142,8 +143,9 @@ class Job extends Model
             $val->user = $this->o_user->GetUserById($val->admin_modify)->email;            
             $val->date_finish = Util::sz_DateFinishFormat($val->date_finish);
             $val->updated_at = Util::sz_DateTimeFormat($val->updated_at);
+            $money_total += $val->money;
         }
-        $a_return = array('a_data' => $a_data, 'a_search' => $a_search);
+        $a_return = array('a_data' => $a_data, 'a_search' => $a_search, 'money_total'=>$money_total);
         return $a_return;
     }
 }

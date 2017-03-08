@@ -109,8 +109,14 @@
                 </td>
             </tr>
         @endforeach
-        </table>        
-        <a class="btn btn-primary btn-sm" href="/export_excel_Jobs" target="_blank">Export Excel</a>
+        </table>
+        <div class="form-group">
+            <div class="col-xs-12 col-sm-2 no-padding">
+                <a class="btn btn-primary btn-sm" href="/export_excel_Jobs" target="_blank">Export Excel</a>
+            </div>
+            <strong class="text-left text-danger">TỔNG TIÊN:  {{number_format($money_total)}} (VNĐ)</strong>
+        </div>
+              
     </div>
 
 <!--Hidden input-->

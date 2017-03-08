@@ -61,16 +61,18 @@ class JobController extends Controller
      * @Since: 6/3/2017
      */
     public function getAllJob() {
-        $a_Data = $this->o_Job->getAllSearch();
+        $a_Data = $this->o_Job->getAllSearch();        
+
         $Data_view['a_Jobs'] = $a_Data['a_data'];
         $Data_view['a_search'] = $a_Data['a_search'];
+        $Data_view['money_total'] = $a_Data['money_total'];
         
         $Data_view['a_users'] = $this->o_user->getAll();
         $Data_view['a_projects'] = $this->o_Project->getAll();
         
         $aryAllChannel = array();
         $this->o_Channel->getAllChannelByParentID(0, $aryAllChannel);
-        $Data_view['aryAllChannel'] = $aryAllChannel;
+        $Data_view['aryAllChannel'] = $aryAllChannel;        
 
         return view('jobs.index',$Data_view);
         
