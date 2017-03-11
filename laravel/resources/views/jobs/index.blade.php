@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 
-<h3 class="col-xs-12 no-padding">Danh sách phòng ban</h3>
+<h3 class="col-xs-12 no-padding">Danh sách tác vụ</h3>
 <form method="get" action="" id="frmFilter" name="frmFilter"  class="form-inline">
     <input type="hidden" name="_token" value="{!! csrf_token() !!}">
     <div class="form-group">
