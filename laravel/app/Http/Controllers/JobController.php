@@ -121,6 +121,7 @@ class JobController extends Controller
                         $o_jobs['project'] = isset($this->o_Project->getProjectById($o_person->project_id)->name) ? $this->o_Project->getProjectById($o_person->project_id)->name : 'Ko xac dinh';
                         $o_jobs['supplier'] = isset($this->o_Supplier->getSupplierById($o_person->supplier_id)->name) ? $this->o_Supplier->getSupplierById($o_person->supplier_id)->name : 'Ko xac dinh';
                         $o_jobs['channel'] = isset($this->o_Channel->getChanneltById($o_person->channel_id)->name) ? $this->o_Channel->getChanneltById($o_person->channel_id)->name :'Ko xac dinh' ;
+                        $o_jobs['branch'] = isset($this->o_Branch->getBranchById($o_person->branch_id)->name) ? $this->o_Branch->getBranchById($o_person->branch_id)->name : 'khong xac dinh';
                         $o_jobs['title'] = $o_person->title;
                         $o_jobs['description'] = $o_person->description;
                         $o_jobs['money'] = number_format($o_person->money).' (VNĐ)';
