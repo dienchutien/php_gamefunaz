@@ -88,6 +88,7 @@ class JobController extends Controller
         $Data_view['a_users'] = $this->o_user->getAll();
         $Data_view['a_projects'] = $this->o_Project->getAll();
         $Data_view['a_supplier'] = $this->o_Supplier->getAll();
+        $Data_view['a_branch'] = $this->o_Branch->getAll();
         
         $aryAllChannel = array();
         $this->o_Channel->getAllChannelByParentID(0, $aryAllChannel);

@@ -52,6 +52,17 @@
             @endif             
         </select>
     </div>
+    
+    <div class="form-group">
+        <select id="branch" name="branch" class="form-control input-sm">
+            <option value="">Chi nhánh</option>
+            @if(count($a_branch) > 0)
+                @foreach($a_branch as $o_branch )
+                <option value="{{$o_branch->id}}" <?php echo isset($a_search['branch']) && $a_search['branch'] == $o_branch->id ? 'selected':''?> >{{$o_branch->name}}</option>
+                @endforeach
+            @endif             
+        </select>
+    </div>
     <div class="form-group">
         <select id="channel" name="channel" class="form-control input-sm">
             <option value="">Kênh</option>
@@ -76,6 +87,7 @@
                 <td class="bg-success"><strong>Dự án</strong></td>
                 <td class="bg-success"><strong>Nhà cung cấp</strong></td>
                 <td class="bg-success"><strong>Kênh</strong></td>
+                <td class="bg-success"><strong>Chi Nhánh</strong></td>
                 <td class="bg-success"><strong>Tiêu Đề</strong></td>
                 <td class="bg-success"><strong>Người cập nhật</strong></td>
                 <td class="bg-success"><strong>Số tiền</strong></td>
@@ -91,6 +103,7 @@
                 <td>    {{ $a_val->project }}</td>
                 <td>    {{ $a_val->supplier }}</td>
                 <td>    {{ $a_val->channel }}</td>
+                <td>    {{ $a_val->branch }}</td>
                 <td>    {{ $a_val->title }}</td>
                 <td>    {{ $a_val->user }}</td>
                 <td>    {{ number_format($a_val->money) }} Vnđ</td>

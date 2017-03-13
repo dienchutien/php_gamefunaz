@@ -19,12 +19,14 @@ class Job extends Model
     private $o_Channel;
     private $o_User;
     private $o_Supplier;
+    private $o_Branch;
 
     public function __construct() {
         $this->o_Project = new Projects();
         $this->o_Channel = new Channel();
         $this->o_user = new User();
         $this->o_Supplier = new Supplier();
+        $this->o_Branch = new Branch();
     }
     
     /**
@@ -125,6 +127,12 @@ class Job extends Model
             $a_data = $o_Db->where('supplier_id', $i_supplier);
         }
         
+        $i_branch = Input::get('branch','');
+        if($i_branch != '') {
+            $a_search['branch'] = $i_branch;
+            $a_data = $o_Db->where('branch_id', $i_branch);
+        }
+        
         $i_channel = Input::get('channel','');
         if($i_channel != '') {
             $a_search['channel'] = $i_channel;
@@ -167,6 +175,7 @@ class Job extends Model
             $val->project = isset($this->o_Project->getProjectById($val->project_id)->name)? $this->o_Project->getProjectById($val->project_id)->name : 'khong xac dinh';
             $val->supplier = isset($this->o_Supplier->getSupplierById($val->supplier_id)->name) ? $this->o_Supplier->getSupplierById($val->supplier_id)->name : 'ko xac dinh';
             $val->channel = isset($this->o_Channel->getChanneltById($val->channel_id)->name) ? $this->o_Channel->getChanneltById($val->channel_id)->name : 'khong xac dinh';
+            $val->branch = isset($this->o_Branch->getBranchById($val->branch_id)->name) ? $this->o_Branch->getBranchById($val->branch_id)->name : 'khong xac dinh';
             $val->user = $this->o_user->GetUserById($val->admin_modify)->email;            
             $val->date_finish = Util::sz_DateFinishFormat($val->date_finish);
             $val->updated_at = Util::sz_DateTimeFormat($val->updated_at);
