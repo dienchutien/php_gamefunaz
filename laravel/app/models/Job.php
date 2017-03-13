@@ -39,6 +39,7 @@ class Job extends Model
         $a_DataUpdate['description'] = Input::get('description');
         $a_DataUpdate['project_id'] = Input::get('projects');
         $a_DataUpdate['supplier_id'] = Input::get('supplier');
+        $a_DataUpdate['branch_id'] = Input::get('branch');
         $a_DataUpdate['channel_id'] = Input::get('channel');
         $time_finish = Input::get('date_finish');
         $a_DataUpdate['date_finish'] = date('Y-m-d',strtotime($time_finish));

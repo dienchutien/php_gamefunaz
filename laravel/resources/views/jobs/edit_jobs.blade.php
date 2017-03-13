@@ -63,6 +63,22 @@
             </div>
         </div>
     </div>
+    
+    <div class="form-group">
+        <div class="col-xs-12 col-sm-6 no-padding">
+            <label for="branch" class="col-xs-12 col-sm-3 control-label text-left">Chi nhánh</label>
+            <div class="col-xs-12 col-sm-6 no-padding">
+                <select class="form-control input-sm " id="branch" name="branch">
+                    <option value="">Chọn chi nhánh</option>
+                    @if(count($a_DataBranch) > 0)
+                        @foreach($a_DataBranch as $o_DataBranch )
+                        <option value="{{$o_DataBranch->id}}" <?php echo isset($a_Jobs->branch_id) && $a_Jobs->branch_id == $o_DataBranch->id ? 'selected':''?> >{{$o_DataBranch->name}}</option>
+                        @endforeach
+                    @endif
+                </select>
+            </div>
+        </div>
+    </div>
 
     <div class="form-group">
         <div class="col-xs-12 col-sm-6 no-padding">

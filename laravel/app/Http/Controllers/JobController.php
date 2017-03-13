@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Input;
 use App\models\Projects;
 use App\models\Channel;
 use App\models\Supplier;
+use App\models\Branch;
 use App\User;
 use Illuminate\Support\Facades\Session;
 use DB;
@@ -26,6 +27,7 @@ class JobController extends Controller
     private $o_Channel;
     private $o_User;
     private $o_Supplier;
+    private $o_Branch;
 
     public function __construct() {
         $this->o_Job = new o_JobModel();
@@ -33,6 +35,7 @@ class JobController extends Controller
         $this->o_Channel = new Channel();
         $this->o_user = new User();
         $this->o_Supplier = new Supplier();
+        $this->o_Branch = new Branch();
     }
     /**
      * @Auth: Dienct
@@ -52,9 +55,13 @@ class JobController extends Controller
         $a_DataProjects = array();
         $a_DataProjects = $this->o_Project->getAll();
         
-        //get all project view
+        //nha cung cap
         $a_DataSupplier = array();
         $a_DataSupplier = $this->o_Supplier->getAll();
+        
+        //chi nhanh
+        $a_DataBranch = array();
+        $a_DataBranch = $this->o_Branch->getAll();
 
         //get channel view
         $aryAllChannel = array();
@@ -62,7 +69,7 @@ class JobController extends Controller
 
         $a_DataView = $this->o_Job->getJobById($job_id);
 
-        return view('jobs.edit_jobs', ['a_Jobs' => $a_DataView, 'i_id' => $job_id, 'a_DataProjects'=>$a_DataProjects, 'aryAllChannel'=>$aryAllChannel, 'a_DataSupplier'=>$a_DataSupplier]);
+        return view('jobs.edit_jobs', ['a_Jobs' => $a_DataView, 'i_id' => $job_id, 'a_DataProjects'=>$a_DataProjects, 'aryAllChannel'=>$aryAllChannel, 'a_DataSupplier'=>$a_DataSupplier, 'a_DataBranch'=>$a_DataBranch]);
         
     }
     
