@@ -181,8 +181,7 @@ class JobController extends Controller
      */
     public function exportJobStatistics() {
 
-        $sz_Sql = Session::get('sqlJobStatistics');
-        $sz_filter = Session::get('ss_filter_by');
+        $sz_Sql = Session::get('sqlJobStatistics');        
         $szfrom_date = Session::get('ss_from_date');
         $szto_date = Session::get('ss_to_date');
 
@@ -194,24 +193,24 @@ class JobController extends Controller
             $a_Data = DB::select(DB::raw($sz_Sql));
 
             try {
-                Excel::create('Job_Statistics', function($excel) use($a_Data, $sz_filter, $szfrom_date, $szto_date) {
+                Excel::create('Job_Statistics', function($excel) use($a_Data, $szfrom_date, $szto_date) {
                     // Set the title
                     $excel->setTitle('no title');
                     $excel->setCreator('Dienct')->setCompany('no company');
                     $excel->setDescription('report file');
-                    $excel->sheet('sheet1', function($sheet) use($a_Data, $sz_filter, $szfrom_date, $szto_date) {
+                    $excel->sheet('sheet1', function($sheet) use($a_Data, $szfrom_date, $szto_date) {
                         $money_total = 0;
                         if (count($a_Data)) {
                             foreach ($a_Data as $key => $o_person) {
                                 $o_jobs = array();
                                 $o_jobs['stt'] = $key + 1;
 
-                                if ($sz_filter == 'channel_id') {
+                                if (isset($o_person->channel_id)) {
                                     $o_jobs['name'] = isset($this->o_Channel->getChanneltById($o_person->channel_id)->name) ? $this->o_Channel->getChanneltById($o_person->channel_id)->name : 'khong xac dinh';
-                                } else if ($sz_filter == 'project_id') {
-                                    $o_jobs['name'] = isset($this->o_Project->getProjectById($o_person->project_id)->name) ? $this->o_Project->getProjectById($o_person->project_id)->name : 'khong xac dinh';
-                                } else if ($sz_filter == 'branch_id') {
-                                    $o_jobs['name'] = isset($this->o_Branch->getBranchById($o_person->branch_id)->name) ? $this->o_Branch->getBranchById($o_person->branch_id)->name : 'khong xac dinh';
+                                } else if (isset($o_person->project_id)) {
+                                    $o_jobs['name'] = isset($o_person->project_id) && isset($this->o_Project->getProjectById($o_person->project_id)->name) ? $this->o_Project->getProjectById($o_person->project_id)->name : 'khong xac dinh';
+                                } else if (isset($o_person->branch_id)) {
+                                    $o_jobs['name'] = isset($o_person->branch_id) && isset($this->o_Branch->getBranchById($o_person->branch_id)->name) ? $this->o_Branch->getBranchById($o_person->branch_id)->name : 'khong xac dinh';
                                 }
                                 $o_jobs['total_money'] = number_format($o_person->total_money) . ' VNĐ';
                                 $o_jobs['Time'] = $szfrom_date . '-' . $szto_date;
