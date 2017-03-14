@@ -152,4 +152,84 @@ class JobController extends Controller
         }
 
     }
+    
+    /**
+
+     * @auth: Dienct
+     * @since: 13/03/2017
+     * @des: job statistics by channel, project or branch
+     *
+     */
+    public function jobStatistics(){
+        $Data_view = array();
+        $productname = Input::get('submit');
+        if (isset($productname) && $productname != "") {
+            $a_Data = $this->o_Job->getJobStatistics();
+            $Data_view['a_Jobs'] = $a_Data['a_data'];
+            $Data_view['a_search'] = $a_Data['a_search'];
+        }
+
+        return view('jobs.statistics',$Data_view);
+
+    }
+    /**
+
+     * @auth: Dienct
+     * @since: 14/03/2017
+     * @des: job statistics by channel, project or branch
+     *
+     */
+    public function exportJobStatistics(){
+        
+        $sz_Sql = Session::get('sqlJobStatistics');
+        $sz_filter = Session::get('ss_filter_by');        
+
+        if(strpos($sz_Sql, 'limit') !== false){
+            $arr =  explode('limit',$sz_Sql);
+            $sz_Sql = $arr[0];
+        }
+        $a_Data = DB::select(DB::raw($sz_Sql));
+
+        try{
+            Excel::create('Job_Statistics', function($excel) use($a_Data, $sz_filter) {
+                // Set the title
+                $excel->setTitle('no title');
+                $excel->setCreator('Dienct')->setCompany('no company');
+                $excel->setDescription('report file');
+                $excel->sheet('sheet1', function($sheet) use($a_Data, $sz_filter) {
+                    $money_total = 0;
+                    foreach ($a_Data as $key => $o_person) {
+                        $o_jobs = array();
+                        $o_jobs['stt'] = $key +1;
+                        
+                        if($sz_filter == 'channel_id'){
+                            $o_jobs['name'] = isset($this->o_Channel->getChanneltById($o_person->channel_id)->name) ? $this->o_Channel->getChanneltById($o_person->channel_id)->name : 'khong xac dinh';
+                        }else if($sz_filter == 'project_id'){
+                            $o_jobs['name'] = isset($this->o_Project->getProjectById($o_person->project_id)->name)? $this->o_Project->getProjectById($o_person->project_id)->name : 'khong xac dinh';                    
+                        }else if($sz_filter == 'branch_id'){
+                            $o_jobs['name'] = isset($this->o_Branch->getBranchById($o_person->branch_id)->name) ? $this->o_Branch->getBranchById($o_person->branch_id)->name : 'khong xac dinh';
+                        }
+                        $o_jobs['total_money'] = number_format($o_person->total_money) .' VNĐ';
+                        
+                        $ary[] = $o_jobs;
+                        
+                    }
+
+                    if(isset($ary)){
+                        $sheet->fromArray($ary);
+                    }
+                    $sheet->cells('A1:BM1', function($cells) {
+                        $cells->setFontWeight('bold');
+                        $cells->setBackground('#AAAAFF');
+                        $cells->setFont(array(
+                            'bold' => true
+                        ));
+                    });
+                });
+            })->download('xlsx');
+        }catch (\Exception $e){
+            echo $e->getMessage();
+        }
+
+    }
 }

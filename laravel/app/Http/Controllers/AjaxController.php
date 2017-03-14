@@ -50,6 +50,9 @@ class AjaxController extends Controller
             case "recover-row":
                 $this->RecoverRow();
                 break;
+            case "save-session-job-statistics":
+                $this->SaveSessionStatistics();
+                break;
             default:
                 break;
         }
@@ -84,9 +87,9 @@ class AjaxController extends Controller
         echo json_encode($arrayRes);       
     }
     /**
-     * Auth: DienCt
-     * Des: Recover record
-     * Since: 31/12/2015
+     * @Auth: DienCt
+     * @Des: Recover record
+     * @Since: 31/12/2015
      */
     protected function RecoverRow(){
 
@@ -108,6 +111,22 @@ class AjaxController extends Controller
 
     }
     
+    /**
+
+     * @auth: Dienct
+     * @since: 14/03/2017
+     * @des: save session
+     * 
+     *      */
+    protected function SaveSessionStatistics(){
+        $sz_filter_by = Input::get('sz_filter_by','');
+        $szfrom_date = Input::get('szfrom_date','');
+        $szto_date = Input::get('szto_date','');
+        Session::put('ss_filter_by', $sz_filter_by);
+        Session::put('ss_from_date', $szfrom_date);
+        Session::put('ss_to_date', $szto_date);
+        
+    }
     
     
 }

@@ -171,6 +171,40 @@ var GLOBAL_JS = {
     v_fSearchSubmitAll: function () {
         $('.submit').click();
     },
+    
+    /**
+     * Auth: Dienct
+     * Des: Submit search job statistics
+     * Since: 06/03/2017
+     * */
+    v_fSearchSubmitStatistics: function () {
+        var sz_filter_by = $('#filter_by').val();
+        var szfrom_date = $('#from_date').val();
+        var szto_date = $('#to_date').val();
+        $('.alert-danger').empty();
+        if(sz_filter_by == ''){
+            $('.alert-danger').append('<p><strong class="required_name">Bạn cần chọn loại lọc</strong></p></br>');
+            $('.alert-danger').removeClass('hide');
+        }
+        if ($('.alert-danger').text() != '') return false;
+        var o_data = {
+                sz_filter_by: sz_filter_by,
+                szfrom_date: szfrom_date,
+                szto_date : szto_date,
+                func: 'save-session-job-statistics',
+            };
+            $.ajax({
+                url: GLOBAL_JS.sz_CurrentHost + '/ajax',
+                type: 'POST',
+                data: o_data,
+                dataType: 'json',
+                success: function (data) {
+                    
+                }
+            });
+        
+        $('.submit').click();
+    },
     pad: function (num) {
         var str = num.toString().split('.');
         if (str[0].length >= 4) {

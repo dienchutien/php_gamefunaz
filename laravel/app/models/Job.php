@@ -184,4 +184,67 @@ class Job extends Model
         $a_return = array('a_data' => $a_data, 'a_search' => $a_search, 'money_total'=>$money_total);
         return $a_return;
     }
+    
+    /**
+     * @Auth:Dienct
+     * @Des: get all record jobs statistics
+     * @Since: 13/03/2017
+     */
+    public function getJobStatistics(){
+        DB::connection()->enableQueryLog();
+        $a_data = array();
+        $sz_filter = Input::get('filter_by','');
+        
+        $o_Db = DB::table('jobs')->select(DB::raw('sum(money) as total_money,'.$sz_filter));
+        $a_search = array();
+        
+        $sz_from_date = Input::get('from_date','');
+        if($sz_from_date != '') {
+            $a_search['from_date'] = $sz_from_date;
+            $a_data = $o_Db->where('date_finish','>=', date('Y-m-d',strtotime($sz_from_date)));
+        }
+        
+        $sz_to_date = Input::get('to_date','');
+        if($sz_to_date != '') {
+            $a_search['to_date'] = $sz_to_date;
+            $a_data = $o_Db->where('date_finish','<=', date('Y-m-d',strtotime($sz_to_date)));
+        }
+        
+        //group by
+        if($sz_filter != '') {
+            $a_search['filter_by'] = $sz_filter;
+            $a_data = $o_Db->groupBy($sz_filter);
+        }
+        
+        $a_data = $o_Db->paginate(30);
+        
+        // sql
+        $query = DB::getQueryLog();
+        $query = end($query);
+        foreach ($query['bindings'] as $i => $binding) {
+            $query['bindings'][$i] = "'$binding'";
+        }
+
+        $sz_query_change = str_replace(array('%', '?'), array('%%', '%s'), $query['query']);
+        $sz_SqlFull = vsprintf($sz_query_change, $query['bindings']);        
+
+        // save session
+        Session::put('sqlJobStatistics', $sz_SqlFull);
+
+        if(count($a_data)> 0){
+            foreach ($a_data as $key => &$val) {
+                $val->stt = $key + 1;
+                if($sz_filter == 'channel_id'){
+                    $val->name = isset($this->o_Channel->getChanneltById($val->channel_id)->name) ? $this->o_Channel->getChanneltById($val->channel_id)->name : 'khong xac dinh';
+                }else if($sz_filter == 'project_id'){
+                    $val->name = isset($this->o_Project->getProjectById($val->project_id)->name)? $this->o_Project->getProjectById($val->project_id)->name : 'khong xac dinh';                    
+                }else if($sz_filter == 'branch_id'){
+                    $val->name = isset($this->o_Branch->getBranchById($val->branch_id)->name) ? $this->o_Branch->getBranchById($val->branch_id)->name : 'khong xac dinh';
+                }
+                $val->time = $sz_from_date."-".$sz_to_date;
+            }
+        }
+        $a_return = array('a_data' => $a_data, 'a_search' => $a_search);
+        return $a_return;
+    }
 }

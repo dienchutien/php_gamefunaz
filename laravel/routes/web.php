@@ -23,7 +23,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('home', 'HomeController@index');
 
     // Route Project
-    Route::get('list_projects', 'ProjectsController@getAllProject');    
+    Route::get('list_projects', 'ProjectsController@getAllProject');
     Route::get('projects/addedit', 'ProjectsController@ListProjects');
     Route::post('projects/addedit','ProjectsController@ListProjects');
     
@@ -42,6 +42,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('job/addedit', 'JobController@addEditJob');
     Route::post('job/addedit','JobController@addEditJob');
     Route::get('export_excel_Jobs', 'JobController@exportJob');
+    Route::get('job_statistics', 'JobController@jobStatistics');
+    Route::get('export_Jobs_Statistics', 'JobController@exportJobStatistics');
     
     // Route Branch
     Route::get('list_branch', 'BranchController@getAllBranch');
