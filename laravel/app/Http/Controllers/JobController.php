@@ -185,11 +185,6 @@ class JobController extends Controller
         $sz_filter = Session::get('ss_filter_by');
         $szfrom_date = Session::get('ss_from_date');
         $szto_date = Session::get('ss_to_date');
-        echo "<pre>";
-        print_r($sz_filter);
-        echo "</pre>";
-        die;
-
 
         if (strpos($sz_Sql, 'limit') !== false) {
             $arr = explode('limit', $sz_Sql);
