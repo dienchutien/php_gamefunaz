@@ -185,6 +185,10 @@ class JobController extends Controller
         $sz_filter = Session::get('ss_filter_by');
         $szfrom_date = Session::get('ss_from_date');
         $szto_date = Session::get('ss_to_date');
+        echo "<pre>";
+        print_r($sz_filter);
+        echo "</pre>";
+        die;
 
 
         if (strpos($sz_Sql, 'limit') !== false) {
@@ -193,10 +197,6 @@ class JobController extends Controller
         }
         if (isset($sz_Sql) && $sz_Sql != '') {
             $a_Data = DB::select(DB::raw($sz_Sql));
-            echo "<pre>";
-            print_r($a_Data);
-            echo "</pre>";
-
 
             try {
                 Excel::create('Job_Statistics', function($excel) use($a_Data, $sz_filter, $szfrom_date, $szto_date) {
