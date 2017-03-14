@@ -196,7 +196,6 @@ class JobController extends Controller
             echo "<pre>";
             print_r($a_Data);
             echo "</pre>";
-            die;
 
 
             try {
