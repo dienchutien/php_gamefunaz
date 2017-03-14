@@ -178,6 +178,7 @@ var GLOBAL_JS = {
      * Since: 06/03/2017
      * */
     v_fSearchSubmitStatistics: function () {
+        
         var sz_filter_by = $('#filter_by').val();        
         var szfrom_date = $('#from_date').val();
         var szto_date = $('#to_date').val();
