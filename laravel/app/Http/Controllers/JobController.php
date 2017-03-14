@@ -193,6 +193,11 @@ class JobController extends Controller
         }
         if (isset($sz_Sql) && $sz_Sql != '') {
             $a_Data = DB::select(DB::raw($sz_Sql));
+            echo "<pre>";
+            print_r($a_Data);
+            echo "</pre>";
+            die;
+
 
             try {
                 Excel::create('Job_Statistics', function($excel) use($a_Data, $sz_filter, $szfrom_date, $szto_date) {
