@@ -230,6 +230,8 @@ class Job extends Model
 
         // save session
         Session::put('sqlJobStatistics', $sz_SqlFull);
+        Session::put('ss_from_date', $sz_from_date);
+        Session::put('ss_to_date', $sz_to_date);
 
         if(count($a_data)> 0){
             foreach ($a_data as $key => &$val) {
