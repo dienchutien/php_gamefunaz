@@ -122,6 +122,8 @@ class AjaxController extends Controller
         $sz_filter_by = Input::get('sz_filter_by','');
         $szfrom_date = Input::get('szfrom_date','');
         $szto_date = Input::get('szto_date','');
+        Session::forget('ss_from_date');
+        Session::forget('ss_to_date');
         Session::put('ss_filter_by', $sz_filter_by);
         Session::put('ss_from_date', $szfrom_date);
         Session::put('ss_to_date', $szto_date);
