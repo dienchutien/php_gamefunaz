@@ -52,6 +52,6 @@
 
 <!--Hidden input-->
 <input type="hidden" name="tbl" id="tbl" value="jobs">
-<?php  echo (empty($a_search))?$a_Jobs->render():$a_Jobs->appends($a_search)->render();?>
+<?php  echo isset($a_Jobs) && (empty($a_search))?$a_Jobs->render():$a_Jobs->appends($a_search)->render();?>
 
 @endsection
