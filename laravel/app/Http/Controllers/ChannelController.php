@@ -20,7 +20,7 @@ class ChannelController extends Controller
      * @des get all projects
      */
     public function getAllChannel() {        
-        $a_Data = $this->o_Channel->getAll();
+        $this->o_Channel->getAllChannelByParentID(0,$a_Data);
         return view('channel.index', ['a_Data' => $a_Data]);
     }
     /**

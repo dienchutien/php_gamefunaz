@@ -86,12 +86,14 @@ class Channel extends Model
      * 
      */
     public function getAllChannelByParentID($parent_id = 0, &$aryChildID) {
-        $aryResult = DB::table('channel')->select('id', 'name', 'level')->where('parent_id', $parent_id)->orderBy('name', 'asc')->get();
+        $aryResult = DB::table('channel')->select('*')->where('parent_id', $parent_id)->orderBy('name', 'asc')->get();
 
         foreach ($aryResult as $o_val) {
             $ary = array();
             $ary['name'] = $o_val->name;
             $ary['level'] = $o_val->level;
+            $ary['status'] = $o_val->status;
+            $ary['updated_at'] = Util::sz_DateTimeFormat($o_val->updated_at);
                 $aryChildID[$o_val->id] = $ary;
             if (!empty($aryResult)) {
                 $this->getAllChannelByParentID($o_val->id, $aryChildID);
