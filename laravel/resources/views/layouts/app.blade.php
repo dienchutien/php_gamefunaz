@@ -94,6 +94,12 @@
                             <a href="#"><i class="fa fa-dashboard fa-fw"></i>Bảng điều khiển</a>
                         </li>
                         <li class="">
+                            <a href="#"><i class="fa fa-user"></i>Quản lý User<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level collapse" aria-expanded="false">
+                                <li class=""><a class="" href="<?php echo Request::root()."/list_users"?>">Danh Sách User</a></li>                                
+                            </ul>                            
+                        </li>
+                        <li class="">
                             <a href="#"><i class="fa fa-user"></i>Quản lý Dự Án<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level collapse" aria-expanded="false">
                                 <li class=""><a class="" href="<?php echo Request::root()."/list_projects"?>">Danh Sách Dự Án</a></li>

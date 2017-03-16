@@ -21,6 +21,11 @@ Route::post('ajax','AjaxController@SetProcess');
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('home', 'HomeController@index');
+    
+    // Route Project
+    Route::get('list_users', 'UserController@getAllUser');
+    Route::get('user/addedit', 'UserController@EditUser');
+    Route::post('user/addedit','UserController@EditUser');
 
     // Route Project
     Route::get('list_projects', 'ProjectsController@getAllProject');

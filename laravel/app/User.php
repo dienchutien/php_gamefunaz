@@ -42,12 +42,19 @@ class User extends Authenticatable
 
      * @auth: Dienct
      * @since: 06/03/2017
-     * @des: get all user     
+     * @des: get all user
      *
      */
     public function getAll(){
         $a_Data = array();
-        $a_Data = DB::table('users')->get();
+        $a_Data = DB::table('users')->where('status', 1)->orderBy('name', 'asc')->get();
+        if(count($a_Data) > 0){
+            foreach ($a_Data as $key => &$val) {
+                $val->stt = $key + 1;
+                $val->created_at = Util::sz_DateTimeFormat($val->created_at);
+                $val->updated_at = Util::sz_DateTimeFormat($val->updated_at);
+            }
+        }
         return $a_Data;
     }
-}
+    }
