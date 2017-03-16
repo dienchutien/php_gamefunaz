@@ -17,7 +17,7 @@ class Branch extends Model
      */
     public function getAll() {
         $a_data = array();
-        $a_data = DB::table('branch')->select('id', 'name', 'status', 'created_at', 'updated_at')->where('status', 1)->orderBy('id', 'asc')->get();
+        $a_data = DB::table('branch')->select('id', 'name', 'status', 'created_at', 'updated_at')->where('status', 1)->orderBy('name', 'asc')->get();
         if(count($a_data) > 0){
             foreach ($a_data as $key => &$val) {
                 $val->stt = $key + 1;

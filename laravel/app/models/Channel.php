@@ -23,7 +23,7 @@ class Channel extends Model
      */
     public function getAll() {
         $a_data = array();
-        $a_data = DB::table('channel')->select('id', 'name', 'status', 'created_at', 'updated_at', 'admin_modify')->orderBy('id', 'asc')->get();
+        $a_data = DB::table('channel')->select('id', 'name', 'status', 'created_at', 'updated_at', 'admin_modify')->orderBy('name', 'asc')->get();
         if(count($a_data) > 0){
             foreach ($a_data as $key => &$val) {
                 $val->stt = $key + 1;
@@ -86,7 +86,7 @@ class Channel extends Model
      * 
      */
     public function getAllChannelByParentID($parent_id = 0, &$aryChildID) {
-        $aryResult = DB::table('channel')->select('id', 'name', 'level')->where('parent_id', $parent_id)->get();
+        $aryResult = DB::table('channel')->select('id', 'name', 'level')->where('parent_id', $parent_id)->orderBy('name', 'asc')->get();
 
         foreach ($aryResult as $o_val) {
             $ary = array();
