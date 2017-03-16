@@ -48,7 +48,7 @@
             <div class="collapse navbar-collapse" id="spark-navbar-collapse">
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
-                    <li><a style="color:#337ab7" href="#">Marketing Tool</a></li>
+                    <li><a style="color:#337ab7" href="#">MARKETING BUDGET MANAGEMENT 2017</a></li>
                 </ul>
                 <!-- Modal -->
                 
