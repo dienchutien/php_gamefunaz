@@ -1,91 +1,36 @@
 <!DOCTYPE html>
-<html lang="{{ config('app.locale') }}">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <title>Laravel</title>
-
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
-
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Raleway', sans-serif;
-                font-weight: 100;
-                height: 100vh;
-                margin: 0;
-            }
-
-            .full-height {
-                height: 100vh;
-            }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 12px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @if (Auth::check())
-                    <a href="{{ url('/list_job') }}" style="color:blue;">Home</a>
-                    @else
-                        <a style="color:blue;" href="{{ url('/login') }}">Login</a>
-                        <a style="color:blue;" href="{{ url('/register') }}">Register</a>
-                    @endif
-                </div>
-            @endif
-
-            <div class="content">
-                <div class="title m-b-md">
-                    Marketing Tool 
-                </div>
-
-                <div class="links">
-                    <a href="#">copyright by Top</a>
-                </div>
-            </div>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Marketing Budget Management 2017</title>
+    <!-- Custom Main StyleSheet CSS -->
+    <link href="<?php echo URL::to('/');?>/css/style.css" rel="stylesheet">
+</head>
+<body>
+    <div class="dx-index">
+        <div class="box">
+            <img class="dx-logo" src="images/logo.png">
         </div>
-    </body>
+        <div class="dx-title">
+            <p>Marketing<p>
+            <span>Budget Management 2017</span>
+            <div class="box">
+                @if (Route::has('login'))
+                    @if (Auth::check())
+                    <a href="{{ url('/list_job') }}" class="button button--nuka button--style button--inverted">Home</a>
+                    @else
+                        <a href="{{ url('/login') }}" class="button button--nuka button--style button--inverted">login</a>
+                        <a href="{{ url('/register') }}" class="button button--nuka button--style button--inverted">register</a>
+                    @endif
+                    
+                @endif
+            </div>
+            
+        </div>
+        <p class="dx-diachi">Trụ sở: Tầng 18 tòa Center Building, số 1 Nguyễn Huy Tưởng, Thanh Xuân, Hà Nội</p>
+    </div>
+    <canvas id="c"></canvas>
+<script src="<?php echo URL::to('/');?>/js/anime.min.js"></script>
+<script src="<?php echo URL::to('/');?>/js/custom.js"></script>
+</body>
 </html>
