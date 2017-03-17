@@ -54,4 +54,11 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('list_branch', 'BranchController@getAllBranch');
     Route::get('branch/addedit', 'BranchController@addEditBranch');
     Route::post('branch/addedit','BranchController@addEditBranch');
+    
+    //// Route Role
+    Route::get('list_role_group', 'RoleController@ListRoleGroup');
+    Route::get('role/addedit', 'RoleController@editRoleGroup');
+    Route::post('role/addedit','RoleController@editRoleGroup');
+    Route::get('role/insert', 'RoleController@insertRoleGroup');
+    Route::post('role/insert', 'RoleController@insertRoleGroup');
 });

@@ -117,7 +117,7 @@ var GLOBAL_JS = {
         var sz_name = $('#name').val();
         if (GLOBAL_JS.b_fValidateEmpty(sz_name)) {
             $('.required_name').remove();
-            $('.alert-danger').append('<p><strong class="required_name">Bạn cần nhập tên phòng</strong></p>');
+            $('.alert-danger').append('<p><strong class="required_name">Bạn cần nhập tên</strong></p>');
             $('.alert-danger').removeClass('hide');
             $('#name').focus();
             return false;

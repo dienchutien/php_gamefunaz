@@ -136,6 +136,13 @@
                                 <li><a class="" href="<?php echo Request::root()."/job_statistics"?>"">Thống kê tác vụ</a></li>
                             </ul>                            
                         </li>
+                        <li class="">
+                            <a href="#"><i class="fa fa-lock"></i> Quản lý phân quyền<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level collapse" aria-expanded="false">
+                                <li><a class="" href="<?php echo Request::root()."/list_role_group"?>">Danh sách nhóm quyền</a></li>
+                                <li><a class="" href="<?php echo Request::root()."/role/insert"?>">Thêm mới nhóm quyền</a></li>
+                            </ul>
+                        </li>
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
