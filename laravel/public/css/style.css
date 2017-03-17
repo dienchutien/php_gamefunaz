@@ -21,8 +21,8 @@ canvas {
 }
 .dx-index .dx-logo{
     width: 250px;
-    position: fixed;
-    top: 50px;
+    margin-top: 50px;
+    display: block;
 }
 .dx-index .dx-title{
     position: fixed;
