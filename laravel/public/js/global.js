@@ -126,6 +126,33 @@ var GLOBAL_JS = {
             return false;
         $('.submit').click();
     },
+    /**
+     * Auth: Dienct
+     * Des: 
+     * Since: 16/003/2017
+     * */
+    v_fSubmitUser: function ()
+    {
+        //$chech 0- insert 1-edit
+        var $chech = $('#id').val();        
+        var sz_pass = $('#password').val();
+        var sz_repass = $('#re_password').val();
+        $('.alert-danger').empty();
+        if($chech == 0){
+            if (sz_pass == '' || sz_pass != sz_repass) {
+                $('.alert-danger').append('<p><strong class="required_name">Bạn cần kiểm tra lại password</strong></p>');
+                $('.alert-danger').removeClass('hide');
+            }
+        }else{
+            if (sz_pass != '' && sz_pass != sz_repass) {
+                $('.alert-danger').append('<p><strong class="required_name">Bạn cần kiểm tra lại password</strong></p>');
+                $('.alert-danger').removeClass('hide');
+            }
+        }
+        if ($('.alert-danger').text() != '')
+            return false;
+        $('.submit').click();
+    },
 
     /**
      * Auth: Dienct

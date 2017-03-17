@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\Input;
+use DB;
 
 class UserController extends Controller
 {
@@ -35,14 +36,16 @@ class UserController extends Controller
         $user_id = (int) Input::get('id', 0);
         $checksubmit = Input::get('submit');
         if (isset($checksubmit) && $checksubmit != "") {
-            $this->o_User->AddEditProject($user_id);            
-                return redirect('list_projects')->with('status', 'Cập nhật thành công!');
+            $this->o_User->AddEditUser($user_id);            
+                return redirect('list_users')->with('status', 'Cập nhật thành công!');
         }
 
-        $a_DataView = $this->o_User->GetUserById($user_id);
+        $a_DataView['a_User'] = $this->o_User->GetUserById($user_id);
+        $a_DataView['a_role'] = DB::table('rolegroups')->select('id','name')->where('status', 1)->get();
+        $a_DataView['i_id'] = $user_id;
 
-        return view('user.edit', ['a_User' => $a_DataView, 'i_id' => $user_id]);
-        
+        return view('user.edit', $a_DataView);
+
     }
     
     

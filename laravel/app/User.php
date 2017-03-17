@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use DB;
+use Illuminate\Support\Facades\Input;
 
 class User extends Authenticatable {
 
@@ -63,18 +64,23 @@ class User extends Authenticatable {
      * @Des: Add/edit User
      * @Since: 02/03/2017
      */
-    public function AddEditProject($id) {
+    public function AddEditUser($id) {
         $a_DataUpdate = array();
         $a_DataUpdate['name'] = Input::get('name');
+        $a_DataUpdate['email'] = Input::get('email');
         $a_DataUpdate['status'] = Input::get('status') == 'on' ? 1 : 0;
-        $a_DataUpdate['description'] = '';
+        $a_DataUpdate['rolegroup_id'] = Input::get('rolegroup_id');
+        
+        
         if (is_numeric($id) == true && $id != 0) {
+            if(Input::get('password') != '') $a_DataUpdate['password'] = bcrypt(Input::get('password'));
             $a_DataUpdate['updated_at'] = date('Y-m-d H:i:s', time());
-            DB::table('projects')->where('id', $id)->update($a_DataUpdate);
+            DB::table('users')->where('id', $id)->update($a_DataUpdate);
         } else {
+            $a_DataUpdate['password'] = bcrypt(Input::get('password'));
             $a_DataUpdate['created_at'] = date('Y-m-d H:i:s', time());
             $a_DataUpdate['updated_at'] = date('Y-m-d H:i:s', time());
-            DB::table('projects')->insert($a_DataUpdate);
+            DB::table('users')->insert($a_DataUpdate);
         }
     }
 
