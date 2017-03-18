@@ -222,7 +222,20 @@ var GLOBAL_JS = {
             str[0] = str[0].replace(/(\d)(?=(\d{3})+$)/g, '$1 ');
         }
         return (str.join('.'));
-    }
+    },
+    /**
+     * Auth: Dienct
+     * Des: chekc all role
+     * Since: 18/03/2017
+     * */
+    v_fCheckAllRoleGroup: function (the_sz_Id) {
+        if ($('#' + the_sz_Id).is(':checked'))
+        {
+            $('.' + the_sz_Id).prop('checked', true);
+        } else
+            $('.' + the_sz_Id).prop('checked', false);
+    },
+    
 
 };
 
