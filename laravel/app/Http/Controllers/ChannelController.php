@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\models\Channel as o_ChannelModel;
 use Illuminate\Support\Facades\Input;
+use App\models\Role as o_RoleModel;
 
 class ChannelController extends Controller
 {
@@ -12,6 +13,7 @@ class ChannelController extends Controller
     
     public function __construct() {
         $this->o_Channel = new o_ChannelModel();
+        $o_Role = new o_RoleModel();
     }
     
     /**

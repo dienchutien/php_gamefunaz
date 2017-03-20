@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\models\Projects as o_ProjectModel;
 use Illuminate\Support\Facades\Input;
+use App\models\Role as o_RoleModel;
 
 class ProjectsController extends Controller {
 
@@ -17,6 +18,7 @@ class ProjectsController extends Controller {
 
     public function __construct() {
         $this->o_Project = new o_ProjectModel();
+        $o_Role = new o_RoleModel();
     }
 
     /**

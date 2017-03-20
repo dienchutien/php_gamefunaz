@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Util;
 use Illuminate\Support\Facades\Input;
 use DB;
-use Illuminate\Support\Facades\Auth;
+use Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Redirect;
 
@@ -15,6 +15,49 @@ class Role extends Model
     protected $name = '';
     protected $controller = '';
     
+    
+    /**
+     * Check user role
+     * @author Dienct
+     * @since 18/03/2017
+     * @param string $the_sz_Controller
+     * @return boolean
+     */
+    public function __construct(){
+
+        $a_ControllerAction = explode('@', Route::getCurrentRoute()->getActionName());
+        $a_Controller = explode('\\', $a_ControllerAction[0]);
+        $sz_ControllerURL = $a_Controller[sizeof($a_Controller) - 1];
+        
+
+        if($sz_ControllerURL != 'HomeController' && $sz_ControllerURL != 'AjaxController'){
+            $role_group_id = isset(Auth::user()->role_group_id) ? Auth::user()->role_group_id : 0;
+            $a_DataRole = $this->a_GetAllRoleByRoleGroup($role_group_id);
+
+            $b_checkExit = True;
+            if(count($a_DataRole)>0){
+                foreach ($a_DataRole as $i_Key => $o_Val){
+                    if($o_Val->controller == $sz_ControllerURL && $o_Val->action == $a_ControllerAction[1]) $b_checkExit = False;
+                    if($sz_ControllerURL == 'UserController' && $a_ControllerAction[1]=='edit' && $o_Val->action == 'insert') $b_checkExit = False;
+                }
+                if($b_checkExit == True) Redirect::to('/')->send();
+            }
+        }
+    }
+    /**
+     * @Auth: Dienct
+     * @Des: Get all role by role_group_id
+     * @Since: 18/03/2017
+     */
+    public function a_GetAllRoleByRoleGroup($i_userId){
+        if(isset($i_userId) && $i_userId > 0) {
+            $a_DataRole = array();
+            $a_DataRole = DB::table('roles')->select('controller','action')->where('rolegroup_id', $i_userId)->get();
+            return $a_DataRole;
+        }else{
+            return false;
+        }
+    }
     /**
      * @Auth: Dienct
      * @Des: Get allsearch role group

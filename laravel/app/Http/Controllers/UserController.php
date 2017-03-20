@@ -6,12 +6,14 @@ use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\Input;
 use DB;
+use App\models\Role as o_RoleModel;
 
 class UserController extends Controller
 {
     private $o_User;
     public function __construct() {
         $this->o_User = new User();
+        $o_Role = new o_RoleModel();
     }
     
     /**

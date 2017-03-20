@@ -29,7 +29,8 @@ return [
         ],
         'RoleController'=>[
             'Danh sách nhóm quyền'=>'ListRoleGroup',
-            'Thêm mới nhóm quyền'=>'editRoleGroup',
+            'Sửa nhóm quyền'=>'editRoleGroup',
+            'Thêm mới nhóm quyền'=>'insertRoleGroup'
         ]
     ],
     'name_controller'=>[

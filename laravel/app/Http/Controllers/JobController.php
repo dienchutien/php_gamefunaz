@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Session;
 use DB;
 use Maatwebsite\Excel\Facades\Excel;
 use stdClass;
+use App\models\Role as o_RoleModel;
 
 class JobController extends Controller
 {
@@ -36,6 +37,7 @@ class JobController extends Controller
         $this->o_user = new User();
         $this->o_Supplier = new Supplier();
         $this->o_Branch = new Branch();
+        $o_Role = new o_RoleModel();
     }
     /**
      * @Auth: Dienct

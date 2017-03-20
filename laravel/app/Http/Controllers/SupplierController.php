@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\models\Supplier;
 use Illuminate\Support\Facades\Input;
+use App\models\Role as o_RoleModel;
 
 class SupplierController extends Controller
 {
@@ -17,6 +18,7 @@ class SupplierController extends Controller
 
     public function __construct() {
         $this->o_Supplier = new Supplier();
+        $o_Role = new o_RoleModel();
     }
     
     /**
