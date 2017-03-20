@@ -6,6 +6,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use DB;
 use Illuminate\Support\Facades\Input;
+use App\models\Role;
 
 class User extends Authenticatable {
 
@@ -47,6 +48,7 @@ class User extends Authenticatable {
      *
      */
     public function getAll() {
+        $o_role = new Role();
         $a_Data = array();
         $a_Data = DB::table('users')->where('status', 1)->orderBy('name', 'asc')->get();
         if (count($a_Data) > 0) {
@@ -54,6 +56,7 @@ class User extends Authenticatable {
                 $val->stt = $key + 1;
                 $val->created_at = Util::sz_DateTimeFormat($val->created_at);
                 $val->updated_at = Util::sz_DateTimeFormat($val->updated_at);
+                $val->role = isset($o_role->getRoleGroupInfoByid($val->rolegroup_id)->name) ? $o_role->getRoleGroupInfoByid($val->rolegroup_id)->name : 'Chua cap nhat';
             }
         }
         return $a_Data;

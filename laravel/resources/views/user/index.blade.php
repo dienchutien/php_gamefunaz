@@ -22,7 +22,7 @@
                 <td>    {{ $a_val->stt }}</td>
                 <td>    {{ $a_val->name }}</td>
                 <td>    {{ $a_val->email }}</td>
-                <td>    admin</td>
+                <td>    {{ $a_val->role }}</td>
                 <th class="text-center"> <input id="status_<?= $a_val->id;?>" name="status_<?=$a_val->id;?>" type="checkbox" class="" value="1" <?php if($a_val->status == 1) echo "checked"?> disabled/></th>
                 <td>    {{ $a_val->created_at }}</td>
                 <td>    {{ $a_val->updated_at }}</td>

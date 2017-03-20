@@ -145,4 +145,10 @@ class Role extends Model
         }
     }
     
+    public function getRoleGroupInfoByid($id){
+        $a_Data = array();
+        $a_Data = DB::table('rolegroups')->where('id', $id)->first();
+        return $a_Data;
+    }
+    
 }
