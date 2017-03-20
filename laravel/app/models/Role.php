@@ -31,8 +31,8 @@ class Role extends Model
         
 
         if($sz_ControllerURL != 'HomeController' && $sz_ControllerURL != 'AjaxController'){
-            $role_group_id = isset(Auth::user()->role_group_id) ? Auth::user()->role_group_id : 0;
-            $a_DataRole = $this->a_GetAllRoleByRoleGroup($role_group_id);
+            $rolegroup_id = isset(Auth::user()->rolegroup_id) ? Auth::user()->rolegroup_id : 0;
+            $a_DataRole = $this->a_GetAllRoleByRoleGroup($rolegroup_id);
 
             $b_checkExit = True;
             if(count($a_DataRole)>0){
@@ -46,7 +46,7 @@ class Role extends Model
     }
     /**
      * @Auth: Dienct
-     * @Des: Get all role by role_group_id
+     * @Des: Get all role by rolegroup_id
      * @Since: 18/03/2017
      */
     public function a_GetAllRoleByRoleGroup($i_userId){
@@ -120,7 +120,7 @@ class Role extends Model
     }
     /**
      * @Auth: Dienct
-     * @Des: Get all role by role_group_id
+     * @Des: Get all role by rolegroup_id
      * @Since: 12/1/2016
      */
     public function a_GetAllRoleByRoleGroupIDFilter($i_RoleGroupId){

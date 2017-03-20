@@ -95,13 +95,17 @@ class Job extends Model
         $a_data = array();
         $o_Db = DB::table('jobs')->select('*');
         $a_search = array();
-               
+
+        if(Auth::user()->rolegroup_id != 2){
+            $o_Db->where('admin_modify', Auth::user()->id);
+        }
+
         //search 
         $i_is_payment = Input::get('is_payment','');
         if($i_is_payment != '') {
             $a_search['i_is_payment'] = $i_is_payment;
             $a_data = $o_Db->where('is_payment', $i_is_payment);
-        }        
+        }
         
         $sz_title_name = Input::get('title_name','');
         if($sz_title_name != '') {
