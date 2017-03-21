@@ -96,9 +96,9 @@ class Job extends Model
         $o_Db = DB::table('jobs')->select('*');
         $a_search = array();
 
-        if(Auth::user()->rolegroup_id != 2){
-            $o_Db->where('admin_modify', Auth::user()->id);
-        }
+//        if(Auth::user()->rolegroup_id != 2){
+//            $o_Db->where('admin_modify', Auth::user()->id);
+//        }
 
         //search 
         $i_is_payment = Input::get('is_payment','');
