@@ -111,7 +111,7 @@
                 <td>    {{ $a_val->date_finish }}</td>
                 <td>    {{ $a_val->updated_at }}</td>
                 <td>
-                    @if($a_val->admin_modify == Auth::user()->id)
+                    @if($a_val->admin_modify == Auth::user()->id || Auth::user()->rolegroup_id == 2)
                     <?php
                         if($a_val->status == 1 || $a_val->status == 0){
                     ?>
