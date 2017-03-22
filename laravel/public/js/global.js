@@ -165,6 +165,7 @@ var GLOBAL_JS = {
         var sz_supplier = $('#supplier').val();
         var sz_channel = $('#channel').val();
         var sz_job_type = $('#job_type').val();
+        var sz_branch = $('#branch').val();
         $('.alert-danger').empty();
 
         if (sz_projects == '') {
@@ -183,6 +184,11 @@ var GLOBAL_JS = {
 
         if (sz_job_type == '') {
             $('.alert-danger').append('<p><strong class="required_name">Bạn cần chọn loại tác vụ</strong></p></br>');
+            $('.alert-danger').removeClass('hide');
+        }
+        
+        if (sz_branch == '') {
+            $('.alert-danger').append('<p><strong class="required_name">Bạn cần chọn chi nhanh</strong></p></br>');
             $('.alert-danger').removeClass('hide');
         }
 
