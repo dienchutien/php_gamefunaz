@@ -9,7 +9,7 @@
 <body>
     <div class="dx-index">
         <div class="box">
-            <img class="dx-logo" src="images/logo.png">
+            <div class="wap-logo"><img class="dx-logo" src="images/logo.png"></div>
         </div>
         <div class="dx-title">
             <p>Marketing<p>
