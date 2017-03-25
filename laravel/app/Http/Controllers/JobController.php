@@ -108,9 +108,7 @@ class JobController extends Controller
             $arr =  explode('limit',$sz_Sql);
             $sz_Sql = $arr[0];
         }
-        echo"<pre>";
-        var_dump($sz_Sql);
-        echo"</pre>";
+        
         $a_Data = DB::select(DB::raw($sz_Sql));
         try{
             Excel::create('Danh_Sach_JOb', function($excel) use($a_Data) {
@@ -138,9 +136,6 @@ class JobController extends Controller
                         $ary[] = $o_jobs;
                         
                     }
-                    echo"<pre>";
-                    var_dump($money_total);
-                    echo"</pre>";
                     $ary[0]['total'] = number_format($money_total).' (VNĐ)';
 
                     if(isset($ary)){
