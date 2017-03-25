@@ -134,10 +134,13 @@ class JobController extends Controller
                         $o_jobs['admin'] = isset($this->o_user->GetUserById($o_person->admin_modify)->email) ? $this->o_user->GetUserById($o_person->admin_modify)->email :'ko xac dinh'; ;
                         $o_jobs['type'] = isset($o_person->job_type) && $o_person->job_type == 0 ? 'Trả trước' : 'Trả sau';
                         $o_jobs['update'] = $o_person->updated_at;
-                        $money_total += $o_person->money;
+                        $money_total += (int)$o_person->money;
                         $ary[] = $o_jobs;
                         
                     }
+                    echo"<pre>";
+                    var_dump($money_total);
+                    echo"</pre>";
                     $ary[0]['total'] = number_format($money_total).' (VNĐ)';
 
                     if(isset($ary)){
