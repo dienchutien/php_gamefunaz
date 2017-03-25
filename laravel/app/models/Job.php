@@ -220,7 +220,7 @@ class Job extends Model
             $a_data = $o_Db->groupBy($sz_filter);
         }
         
-        $a_data = $o_Db->paginate(30);
+        $a_data = $o_Db->get();
         
         // sql
         $query = DB::getQueryLog();
