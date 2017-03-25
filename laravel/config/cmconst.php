@@ -25,7 +25,8 @@ return [
             'Danh sách tác vụ'=>'getAllJob',
             'Thêm mới tác vụ'=>'addEditJob',
             'Thống kê tác vụ'=>'jobStatistics',
-            'export Thống kê'=>'exportJobStatistics'
+            'export Thống kê'=>'exportJobStatistics',
+            'export tác vụ'=>'exportJob'
             
         ],
         'RoleController'=>[
