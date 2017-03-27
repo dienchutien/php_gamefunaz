@@ -29,7 +29,7 @@
             <tr>
                 <td class="bg-success"><strong>STT</strong></td>
                 <td class="bg-success"><strong>Tên</strong></td>
-                <td class="bg-success"><strong>Tổng Chi Phí</strong></td>
+                <td class="bg-success"><strong>Tổng Chi Phí(VNĐ)</strong></td>
                 <td class="bg-success"><strong>Thời gian</strong></td>
             </tr>
             @if(isset($a_Jobs))
@@ -37,7 +37,7 @@
             <tr>
                 <td> {{ $o_Job->stt }}</td>
                 <td> {{ $o_Job->name }}</td>
-                <td> {{ number_format($o_Job->total_money) }} VNĐ</td>
+                <td> {{ number_format($o_Job->total_money) }}</td>
                 <td> {{ $o_Job->time }}</td>
             </tr>
                 @endforeach

@@ -90,7 +90,7 @@
                 <td class="bg-success"><strong>Chi Nhánh</strong></td>
                 <td class="bg-success"><strong>Tiêu Đề</strong></td>
                 <td class="bg-success"><strong>Người cập nhật</strong></td>
-                <td class="bg-success"><strong>Số tiền</strong></td>
+                <td class="bg-success"><strong>Số tiền (VNĐ)</strong></td>
                 <td class="bg-success"><strong>Trạng thái</strong></td>
                 <td class="bg-success"><strong>ngày hoàn thành</strong></td>
                 <td class="bg-success"><strong>Ngày sửa</strong></td>
@@ -106,7 +106,7 @@
                 <td>    {{ $a_val->branch }}</td>
                 <td>    {{ $a_val->title }}</td>
                 <td>    {{ $a_val->user }}</td>
-                <td>    {{ number_format($a_val->money) }} Vnđ</td>
+                <td>    {{ number_format($a_val->money) }}</td>
                 <td> @if($a_val->job_type == 0) Trả trước @else Trả sau @endif  @if($a_val->is_payment == 0) (chưa tổng hợp) @endif</td>
                 <td>    {{ $a_val->date_finish }}</td>
                 <td>    {{ $a_val->updated_at }}</td>
