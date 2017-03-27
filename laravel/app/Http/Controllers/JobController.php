@@ -108,6 +108,7 @@ class JobController extends Controller
             $arr =  explode('limit',$sz_Sql);
             $sz_Sql = $arr[0];
         }
+        
         $a_Data = DB::select(DB::raw($sz_Sql));
         try{
             Excel::create('Danh_Sach_JOb', function($excel) use($a_Data) {
@@ -131,7 +132,7 @@ class JobController extends Controller
                         $o_jobs['admin'] = isset($this->o_user->GetUserById($o_person->admin_modify)->email) ? $this->o_user->GetUserById($o_person->admin_modify)->email :'ko xac dinh'; ;
                         $o_jobs['type'] = isset($o_person->job_type) && $o_person->job_type == 0 ? 'Trả trước' : 'Trả sau';
                         $o_jobs['update'] = $o_person->updated_at;
-                        $money_total += $o_person->money;
+                        $money_total += (int)$o_person->money;
                         $ary[] = $o_jobs;
                         
                     }

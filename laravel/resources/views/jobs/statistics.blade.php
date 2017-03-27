@@ -52,8 +52,6 @@
 
 <!--Hidden input-->
 <input type="hidden" name="tbl" id="tbl" value="jobs">
-<?php  if(isset($a_Jobs) && count($a_Jobs) > 0 ){
-    echo (empty($a_search))?$a_Jobs->render(): $a_Jobs->appends($a_search)->render();
-}?>
+
 
 @endsection
