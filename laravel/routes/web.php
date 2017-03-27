@@ -49,7 +49,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('export_excel_Jobs', 'JobController@exportJob');
     Route::get('job_statistics', 'JobController@jobStatistics');
     Route::get('export_Jobs_Statistics', 'JobController@exportJobStatistics');
-    Route::get('update_parent_channel', 'JobController@update_parent_channel');
+//    Route::get('update_parent_channel', 'JobController@update_parent_channel');
         
     // Route Branch
     Route::get('list_branch', 'BranchController@getAllBranch');

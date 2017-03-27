@@ -37,7 +37,7 @@ class JobController extends Controller
         $this->o_user = new User();
         $this->o_Supplier = new Supplier();
         $this->o_Branch = new Branch();
-//        $o_Role = new o_RoleModel();
+        $o_Role = new o_RoleModel();
     }
     /**
      * @Auth: Dienct
