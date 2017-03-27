@@ -16,6 +16,7 @@
             <option value="channel_id" <?php echo isset($a_search['filter_by']) && $a_search['filter_by'] == 'channel_id' ? 'selected':''?>>Kênh</option>
             <option value="project_id" <?php echo isset($a_search['filter_by']) && $a_search['filter_by'] == 'project_id' ? 'selected':''?>>Dự Án</option>
             <option value="branch_id" <?php echo isset($a_search['filter_by']) && $a_search['filter_by'] == 'branch_id' ? 'selected':''?>>Chi Nhánh</option>
+            <option value="parent_channel" <?php echo isset($a_search['filter_by']) && $a_search['filter_by'] == 'parent_channel' ? 'selected':''?>>Kênh Cha</option>
         </select>
     </div>
     

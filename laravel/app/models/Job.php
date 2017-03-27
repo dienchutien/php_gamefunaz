@@ -229,7 +229,7 @@ class Job extends Model
         }
         
         $a_data = $o_Db->get();
-        
+
         // sql
         $query = DB::getQueryLog();
         $query = end($query);
@@ -254,7 +254,10 @@ class Job extends Model
                     $val->name = isset($this->o_Project->getProjectById($val->project_id)->name)? $this->o_Project->getProjectById($val->project_id)->name : 'khong xac dinh';                    
                 }else if($sz_filter == 'branch_id'){
                     $val->name = isset($this->o_Branch->getBranchById($val->branch_id)->name) ? $this->o_Branch->getBranchById($val->branch_id)->name : 'khong xac dinh';
+                }else if($sz_filter == 'parent_channel'){
+                    $val->name = isset($this->o_Channel->getChanneltById($val->parent_channel)->name) ? $this->o_Channel->getChanneltById($val->parent_channel)->name : 'khong xac dinh';
                 }
+                
                 $val->time = $sz_from_date."-".$sz_to_date;
             }
         }
