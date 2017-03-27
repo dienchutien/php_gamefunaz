@@ -43,6 +43,14 @@ class Job extends Model
         $a_DataUpdate['supplier_id'] = Input::get('supplier');
         $a_DataUpdate['branch_id'] = Input::get('branch');
         $a_DataUpdate['channel_id'] = Input::get('channel');
+        
+        $dataChannel = $this->o_Channel->getChanneltById(Input::get('channel'));
+            if(isset($dataChannel->parent_id)){
+                $parent_channel = $dataChannel->parent_id != 0 ?  $dataChannel->parent_id : $dataChannel->id;
+            }else{
+                $parent_channel = 0;
+            }
+        $a_DataUpdate['parent_channel'] = $parent_channel;
         $time_finish = Input::get('date_finish');
         $a_DataUpdate['date_finish'] = date('Y-m-d',strtotime($time_finish));
         $a_DataUpdate['job_type'] = Input::get('job_type');// 0 la tra truoc, 1 la tra sau

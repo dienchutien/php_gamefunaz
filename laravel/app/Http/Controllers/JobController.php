@@ -37,7 +37,7 @@ class JobController extends Controller
         $this->o_user = new User();
         $this->o_Supplier = new Supplier();
         $this->o_Branch = new Branch();
-        $o_Role = new o_RoleModel();
+//        $o_Role = new o_RoleModel();
     }
     /**
      * @Auth: Dienct
@@ -184,7 +184,7 @@ class JobController extends Controller
      */
     public function exportJobStatistics() {
 
-        $sz_Sql = Session::get('sqlJobStatistics');        
+        $sz_Sql = Session::get('sqlJobStatistics');
         $szfrom_date = Session::get('ss_from_date');
         $szto_date = Session::get('ss_to_date');
 
@@ -242,5 +242,21 @@ class JobController extends Controller
             echo'Ko ton tai dieu kien loc';
         }
     }
+    
+    //update parent-channel
+    public function update_parent_channel(){
+        $data = DB::table('jobs')->select('*')->get();
 
+        foreach($data as $key => $val){
+            $dataChannel = $this->o_Channel->getChanneltById($val->channel_id);
+            if(isset($dataChannel->parent_id)){
+                $parent_channel = $dataChannel->parent_id != 0 ?  $dataChannel->parent_id : $dataChannel->id;
+            }else{
+                $parent_channel = 0;
+            }
+            $a_DataUpdate['parent_channel'] = $parent_channel;
+            DB::table('jobs')->where('id', $val->id)->update($a_DataUpdate);
+        }
+        
+    }
 }
