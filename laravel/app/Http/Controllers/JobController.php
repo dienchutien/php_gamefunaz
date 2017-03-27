@@ -127,7 +127,7 @@ class JobController extends Controller
                         $o_jobs['branch'] = isset($this->o_Branch->getBranchById($o_person->branch_id)->name) ? $this->o_Branch->getBranchById($o_person->branch_id)->name : 'khong xac dinh';
                         $o_jobs['title'] = $o_person->title;
                         $o_jobs['description'] = $o_person->description;
-                        $o_jobs['money'] = number_format($o_person->money).' (VNĐ)';
+                        $o_jobs['money'] = number_format($o_person->money);
                         $o_jobs['date'] = $o_person->date_finish;
                         $o_jobs['admin'] = isset($this->o_user->GetUserById($o_person->admin_modify)->email) ? $this->o_user->GetUserById($o_person->admin_modify)->email :'ko xac dinh'; ;
                         $o_jobs['type'] = isset($o_person->job_type) && $o_person->job_type == 0 ? 'Trả trước' : 'Trả sau';
@@ -215,7 +215,7 @@ class JobController extends Controller
                                 } else if (isset($o_person->branch_id)) {
                                     $o_jobs['name'] = isset($o_person->branch_id) && isset($this->o_Branch->getBranchById($o_person->branch_id)->name) ? $this->o_Branch->getBranchById($o_person->branch_id)->name : 'khong xac dinh';
                                 }
-                                $o_jobs['total_money'] = number_format($o_person->total_money) . ' VNĐ';
+                                $o_jobs['total_money'] = number_format($o_person->total_money);
                                 $o_jobs['Time'] = $szfrom_date . '-' . $szto_date;
 
                                 $ary[] = $o_jobs;
