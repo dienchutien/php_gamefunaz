@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 
-<h3 class="col-xs-12 no-padding">Danh sách tác vụ</h3>
+<h3 class="col-xs-12 no-padding text-uppercase">Danh sách tác vụ</h3>
 <form method="get" action="" id="frmFilter" name="frmFilter"  class="form-inline">
     <input type="hidden" name="_token" value="{!! csrf_token() !!}">
     <div class="form-group">
@@ -81,8 +81,7 @@
 </form>
     <div class="">
         <table class="table table-responsive table-hover table-striped table-bordered">
-            <tr>
-                <th class="bg-success"><input type="checkbox" id="check_all" class="checkAll"></th>
+            <tr class="header-tr">
                 <td class="bg-success"><strong>STT</strong></td>
                 <td class="bg-success"><strong>Dự án</strong></td>
                 <td class="bg-success"><strong>Nhà cung cấp</strong></td>
@@ -98,7 +97,6 @@
             </tr>
         @foreach ($a_Jobs as $a_val)
             <tr>
-                <td><input type="checkbox" class="chk_item" value="{{ $a_val->id }}" name="check[]"/></td>
                 <td>    {{ $a_val->stt }}</td>
                 <td>    {{ $a_val->project }}</td>
                 <td>    {{ $a_val->supplier }}</td>

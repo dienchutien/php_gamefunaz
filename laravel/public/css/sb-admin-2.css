@@ -468,3 +468,25 @@ strong{
 .font-title{
     font-family: Tahoma, Geneva, sans-serif;
 }
+    .header-tr td {
+    text-transform: uppercase !important;
+    background-color: #00aeef !important;
+    color: #FFFFFF !important;
+}
+
+nav.header-page {
+    background-color: #00aeef !important;
+    
+}
+nav #spark-navbar-collapse span, nav #spark-navbar-collapse a{
+    color: #FFFFFF !important;
+}
+.navbar-default, .navbar-default li a{
+    background-color: #00aeef !important;
+    color: #FFFFFF !important;
+    text-transform: uppercase !important;
+}
+
+.navbar-default a.active{
+    background-color: #da7658 !important;
+}

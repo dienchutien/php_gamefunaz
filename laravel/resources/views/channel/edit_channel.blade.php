@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 
-<h3 class="col-xs-12 no-padding"><?php echo $i_id == ''?'Thêm kênh mới':'Sửa kênh'?></h3>
+<h3 class="col-xs-12 no-padding text-uppercase"><?php echo $i_id == ''?'Thêm kênh mới':'Sửa kênh'?></h3>
 <div class="alert alert-danger hide"></div>
 <form class="form-horizontal" method="post" action="">
     <input type="hidden" name="_token" value="{!! csrf_token() !!}">

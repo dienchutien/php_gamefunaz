@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 
-<h3 class="col-xs-12 no-padding">Danh sách nhóm quyền hạn</h3>
+<h3 class="col-xs-12 no-padding text-uppercase">Danh sách nhóm quyền hạn</h3>
 <form method="get" action="" id="frmFilter" name="frmFilter"  class="form-inline">
     <input type="hidden" name="_token" value="{!! csrf_token() !!}">
     <div class="form-group">
@@ -22,7 +22,7 @@
 </form>
     <div class="">
         <table class="table table-responsive table-hover table-striped table-bordered">
-            <tr>
+            <tr class="header-tr">
                 <td><strong>STT</strong></td>
                 <td><strong>Tên nhóm quyền</strong></td>
                 <td><strong>Trạng thái</strong></td>

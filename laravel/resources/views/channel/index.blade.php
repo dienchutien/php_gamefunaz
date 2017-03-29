@@ -1,13 +1,13 @@
 @extends('layouts.app')
 @section('content')
 
-<h3 class="col-xs-12 no-padding">Danh sách kênh</h3>
+<h3 class="col-xs-12 no-padding text-uppercase">Danh sách kênh</h3>
 <form method="get" action="" id="frmFilter" name="frmFilter"  class="form-inline">
     <input type="hidden" name="_token" value="{!! csrf_token() !!}">
 </form>
     <div class="">
         <table class="table table-responsive table-hover table-striped table-bordered">
-            <tr>
+            <tr class="header-tr">
                 <td><strong>Tên kênh</strong></td>                
                 <td><strong>Ngày sửa</strong></td>
                 <td><strong>Action</strong></td>

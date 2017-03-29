@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 
-<h3 class="col-xs-12 no-padding">Danh sách tác vụ</h3>
+<h3 class="col-xs-12 no-padding">DANH SÁCH TÁC VỤ</h3>
 <div class="alert alert-danger hide"></div>
 <form method="get" action="" id="frmFilter" name="frmFilter"  class="form-inline">
     <input type="hidden" name="_token" value="{!! csrf_token() !!}">
@@ -48,7 +48,7 @@
 </form>
     <div class="">
         <table class="table table-responsive table-hover table-striped table-bordered">
-            <tr>
+            <tr class="header-tr">
                 <td class="bg-success"><strong>STT</strong></td>
                 <td class="bg-success"><strong>Tên</strong></td>
                 <td class="bg-success"><strong>Tổng Chi Phí(VNĐ)</strong></td>

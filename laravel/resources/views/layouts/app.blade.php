@@ -32,7 +32,7 @@
 <body id="app-layout">
     <div id="wrapper">
         <div class="form-control hidden" id="alert"><?php echo (session('status')?session('status'):'')?></div>
-        <nav class="navbar navbar-default">
+        <nav class="navbar navbar-default header-page">
             <div class="navbar-header">
                 <!-- Collapsed Hamburger -->
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
