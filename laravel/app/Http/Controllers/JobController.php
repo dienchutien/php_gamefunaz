@@ -165,6 +165,8 @@ class JobController extends Controller
      */
     public function jobStatistics(){
         $Data_view = array();
+        $Data_view['a_projects'] = $this->o_Project->getAll();
+        $Data_view['a_branch'] = $this->o_Branch->getAll();
         $productname = Input::get('submit');
         if (isset($productname) && $productname != "") {
             $a_Data = $this->o_Job->getJobStatistics();

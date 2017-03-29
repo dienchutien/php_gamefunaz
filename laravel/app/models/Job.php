@@ -222,6 +222,18 @@ class Job extends Model
             $a_data = $o_Db->where('date_finish','<=', date('Y-m-d',strtotime($sz_to_date)));
         }
         
+        $i_project = Input::get('project','');
+        if($i_project != '') {
+            $a_search['project'] = $i_project;
+            $a_data = $o_Db->where('project_id', $i_project);
+        }
+        
+        $i_branch = Input::get('branch','');
+        if($i_branch != '') {
+            $a_search['branch'] = $i_branch;
+            $a_data = $o_Db->where('branch_id', $i_branch);
+        }
+        
         //group by
         if($sz_filter != '') {
             $a_search['filter_by'] = $sz_filter;

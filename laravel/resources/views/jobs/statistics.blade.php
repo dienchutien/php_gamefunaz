@@ -12,11 +12,32 @@
     </div>
     <div class="form-group">
         <select id="filter_by" name="filter_by" class="form-control input-sm">
-            <option value="">Lọc theo</option>
+            <option value="">Nhóm theo</option>
             <option value="channel_id" <?php echo isset($a_search['filter_by']) && $a_search['filter_by'] == 'channel_id' ? 'selected':''?>>Kênh</option>
             <option value="project_id" <?php echo isset($a_search['filter_by']) && $a_search['filter_by'] == 'project_id' ? 'selected':''?>>Dự Án</option>
             <option value="branch_id" <?php echo isset($a_search['filter_by']) && $a_search['filter_by'] == 'branch_id' ? 'selected':''?>>Chi Nhánh</option>
             <option value="parent_channel" <?php echo isset($a_search['filter_by']) && $a_search['filter_by'] == 'parent_channel' ? 'selected':''?>>Kênh Cha</option>
+        </select>
+    </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    
+    <div class="form-group">
+        <select id="branch" name="branch" class="form-control input-sm">
+            <option value="">Lọc theo chi nhánh</option>
+            @if(count($a_branch) > 0)
+                @foreach($a_branch as $o_branch )
+                <option value="{{$o_branch->id}}" <?php echo isset($a_search['branch']) && $a_search['branch'] == $o_branch->id ? 'selected':''?> >{{$o_branch->name}}</option>
+                @endforeach
+            @endif
+        </select>
+    </div>
+    <div class="form-group">
+        <select id="project" name="project" class="form-control input-sm">
+            <option value="">Lọc theo dự án</option>
+            @if(count($a_projects) > 0)
+                @foreach($a_projects as $a_project )
+                <option value="{{$a_project->id}}" <?php echo isset($a_search['project']) && $a_search['project'] == $a_project->id ? 'selected':''?> >{{$a_project->name}}</option>
+                @endforeach
+            @endif
         </select>
     </div>
     

@@ -60,7 +60,7 @@
                 @foreach($a_branch as $o_branch )
                 <option value="{{$o_branch->id}}" <?php echo isset($a_search['branch']) && $a_search['branch'] == $o_branch->id ? 'selected':''?> >{{$o_branch->name}}</option>
                 @endforeach
-            @endif             
+            @endif
         </select>
     </div>
     <div class="form-group">
