@@ -20,7 +20,7 @@
                     <a href="{{ url('/list_job') }}" class="button button--nuka button--style button--inverted">Home</a>
                     @else
                         <a href="{{ url('/login') }}" class="button button--nuka button--style button--inverted">login</a>
-                        <a href="{{ url('/register') }}" class="button button--nuka button--style button--inverted">register</a>
+                        <!--<a href="{{ url('/register') }}" class="button button--nuka button--style button--inverted">register</a>-->
                     @endif
                     
                 @endif
