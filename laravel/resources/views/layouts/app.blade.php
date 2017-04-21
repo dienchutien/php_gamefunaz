@@ -141,6 +141,14 @@
                                 <li><a class="" href="<?php echo Request::root()."/role/insert"?>">Thêm mới nhóm quyền</a></li>
                             </ul>
                         </li>
+                        <li class="">
+                            <a href="#"><i class="fa fa-user"></i>Quản lý dữ liệu kh<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level collapse" aria-expanded="false">
+                                <li><a class="" href="<?php echo Request::root()."/customer/list"?>">Danh sách khách hàng</a></li>
+                                <li><a class="" href="<?php echo Request::root()."/customer/addedit"?>">Thêm khách hàng</a></li>
+                                <li><a class="" href="<?php echo Request::root()."/customer/statistics"?>">Thống kê</a></li>
+                            </ul>                            
+                        </li>
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->

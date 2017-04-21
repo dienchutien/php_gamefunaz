@@ -62,4 +62,11 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('role/addedit','RoleController@editRoleGroup');
     Route::get('role/insert', 'RoleController@insertRoleGroup');
     Route::post('role/insert', 'RoleController@insertRoleGroup');
+    //Customer
+    Route::get('customer/list', 'JobController@getAllJob');
+    Route::get('customer/addedit', 'JobController@addEditJob');
+    Route::post('customer/addedit','JobController@addEditJob');
+    Route::get('export_excel_customer', 'JobController@exportJob');
+    Route::get('customer/statistics', 'JobController@jobStatistics');
+    Route::get('export_customer_statistics', 'JobController@exportJobStatistics');
 });
