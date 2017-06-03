@@ -268,6 +268,8 @@ class Job extends Model
                     $val->name = isset($this->o_Branch->getBranchById($val->branch_id)->name) ? $this->o_Branch->getBranchById($val->branch_id)->name : 'khong xac dinh';
                 }else if($sz_filter == 'parent_channel'){
                     $val->name = isset($this->o_Channel->getChanneltById($val->parent_channel)->name) ? $this->o_Channel->getChanneltById($val->parent_channel)->name : 'khong xac dinh';
+                }else if($sz_filter == 'supplier_id'){
+                    $val->name = isset($this->o_Supplier->getSupplierById($val->supplier_id)->name) ? $this->o_Supplier->getSupplierById($val->supplier_id)->name : 'khong xac dinh';
                 }
                 
                 $val->time = $sz_from_date."-".$sz_to_date;

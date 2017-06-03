@@ -218,6 +218,8 @@ class JobController extends Controller
                                     $o_jobs['name'] = isset($o_person->branch_id) && isset($this->o_Branch->getBranchById($o_person->branch_id)->name) ? $this->o_Branch->getBranchById($o_person->branch_id)->name : 'khong xac dinh';
                                 }else if (isset($o_person->parent_channel)) {
                                     $o_jobs['name'] = isset($this->o_Channel->getChanneltById($o_person->parent_channel)->name) ? $this->o_Channel->getChanneltById($o_person->parent_channel)->name : 'khong xac dinh';
+                                }else if (isset($o_person->supplier_id)) {
+                                    $o_jobs['name'] = isset($this->o_Supplier->getSupplierById($o_person->supplier_id)->name) ? $this->o_Supplier->getSupplierById($o_person->supplier_id)->name : 'khong xac dinh';
                                 }
                                 $o_jobs['total_money'] = number_format($o_person->total_money);
                                 $o_jobs['Time'] = $szfrom_date . '-' . $szto_date;
